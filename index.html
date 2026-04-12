@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estudia con Milla 📚</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+    :root {
+      --purple: #9b59b6; --pink: #e91e8c;
+      --yellow: #f1c40f; --green: #27ae60;
+      --red: #e74c3c;    --blue: #2980b9;
+      --orange: #e67e22; --bg: #f5f0ff;
+      --lv1: #27ae60; --lv1s: #1a7a43;
+      --lv2: #2980b9; --lv2s: #1a5276;
+      --lv3: #e67e22; --lv3s: #a04000;
+      --lv4: #c0392b; --lv4s: #7b241c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ════ CONFETTI ════ */
+    #confetti-canvas {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 999;
+    }
+
+    /* ════ HEADER ════ */
+    header {
+      background: linear-gradient(135deg, #7d3c98, #e91e8c);
+      padding: 13px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 4px 14px rgba(125,60,152,.35);
+      position: sticky; top: 0; z-index: 50;
+    }
+    .header-left {
+      display: flex; align-items: center; gap: 8px;
+    }
+    #home-btn {
+      display: none;
+      background: rgba(255,255,255,.22);
+      border: none; border-radius: 50%;
+      width: 36px; height: 36px;
+      font-size: 1rem; cursor: pointer;
+      color: #fff; align-items: center; justify-content: center;
+      transition: background .15s; flex-shrink: 0;
+    }
+    #home-btn:hover { background: rgba(255,255,255,.35); }
+    header h1 {
+      color: #fff; font-weight: 900;
+      font-size: clamp(.95rem, 3.8vw, 1.4rem);
+      text-shadow: 1px 2px 0 rgba(0,0,0,.15);
+    }
+    #score-bar {
+      background: rgba(255,255,255,.22);
+      border-radius: 50px; padding: 5px 12px;
+      color: #fff; font-weight: 800;
+      font-size: clamp(.75rem, 2.6vw, .9rem);
+      display: flex; gap: 9px; align-items: center; flex-shrink: 0;
+    }
+    .star-count { color: var(--yellow); text-shadow: 1px 1px 0 #9a6f00; }
+
+    /* ════ SCREENS ════ */
+    main { max-width: 580px; margin: 0 auto; padding: 16px 14px 60px; }
+    .screen { display: none; animation: fadeIn .35s ease; }
+    .screen.active { display: block; }
+
+    /* ════ HOME SCREEN ════ */
+    .home-greeting {
+      padding: 18px 4px 14px;
+    }
+    .home-greeting h2 {
+      font-size: clamp(1.3rem, 5.5vw, 1.8rem);
+      color: #4a1a6a; font-weight: 900; margin-bottom: 3px;
+    }
+    .home-greeting p { color: #888; font-size: .95rem; }
+
+    /* Subject cards */
+    .subj-card {
+      border: none; border-radius: 22px;
+      cursor: pointer; font-family: 'Nunito', sans-serif;
+      color: #fff; font-weight: 800;
+      box-shadow: 0 7px 0 rgba(0,0,0,.18);
+      transition: transform .12s, box-shadow .12s;
+      position: relative; overflow: hidden;
+      text-align: left;
+    }
+    .subj-card:active { transform: translateY(5px); box-shadow: 0 2px 0 rgba(0,0,0,.18); }
+
+    /* Matemática — featured full-width */
+    #card-math {
+      display: flex; align-items: center; gap: 16px;
+      padding: 22px 20px;
+      background: linear-gradient(135deg, #9b59b6, #e91e8c);
+      box-shadow: 0 7px 0 #6c2483;
+      width: 100%; margin-bottom: 14px;
+    }
+    #card-math .s-icon { font-size: 2.8rem; flex-shrink: 0; }
+    #card-math .s-body { flex: 1; }
+    #card-math .s-name { font-size: clamp(1.15rem, 4.5vw, 1.45rem); line-height: 1; margin-bottom: 4px; }
+    #card-math .s-desc { font-size: .82rem; opacity: .88; font-weight: 600; }
+    #card-math .s-cta  {
+      background: rgba(255,255,255,.22); border-radius: 50px;
+      padding: 6px 14px; font-size: .8rem; white-space: nowrap; flex-shrink: 0;
+    }
+
+    /* 2×2 grid for other subjects */
+    .subjects-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .subj-card.small {
+      padding: 18px 14px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 5px;
+    }
+    .subj-card.small .s-icon { font-size: 1.9rem; }
+    .subj-card.small .s-name { font-size: clamp(.9rem, 3.5vw, 1.05rem); line-height: 1.15; }
+    .subj-card.small .s-desc { font-size: .72rem; opacity: .85; font-weight: 600; }
+    .soon-badge {
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(0,0,0,.2); border-radius: 50px;
+      padding: 2px 9px; font-size: .65rem; font-weight: 900;
+      letter-spacing: .5px; text-transform: uppercase;
+    }
+    /* per-subject colors */
+    #card-lang  { background: linear-gradient(135deg, #2980b9, #1abc9c); box-shadow: 0 7px 0 #1a5276; }
+    #card-sci   { background: linear-gradient(135deg, #27ae60, #f39c12); box-shadow: 0 7px 0 #1a7a40; }
+    #card-hist  { background: linear-gradient(135deg, #e67e22, #c0392b); box-shadow: 0 7px 0 #784212; }
+    #card-eng   { background: linear-gradient(135deg, #8e44ad, #2980b9); box-shadow: 0 7px 0 #5b2c6f; }
+
+    /* ════ COMING SOON SCREEN ════ */
+    #coming-soon-screen {
+      text-align: center;
+      padding: 10px 0;
+    }
+    .cs-icon-wrap {
+      width: 100px; height: 100px; border-radius: 50%;
+      margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,.12);
+    }
+    #cs-title {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+      font-weight: 900; color: #4a1a6a; margin-bottom: 6px;
+    }
+    #cs-subtitle {
+      font-size: 1rem; color: #888; margin-bottom: 28px;
+    }
+    .cs-card {
+      background: #fff; border-radius: 24px;
+      padding: 28px 24px;
+      box-shadow: 0 6px 24px rgba(0,0,0,.08);
+      margin-bottom: 20px;
+    }
+    .cs-card p {
+      font-size: clamp(.95rem, 3.5vw, 1.05rem);
+      color: #666; line-height: 1.6; margin-bottom: 12px;
+    }
+    .cs-card p:last-child { margin-bottom: 0; }
+    .cs-soon-text {
+      font-size: clamp(1.1rem, 4vw, 1.3rem);
+      font-weight: 900; color: var(--purple);
+      margin-bottom: 4px !important;
+    }
+    .back-home-btn {
+      width: 100%;
+      border: none; border-radius: 16px; padding: 15px;
+      font-size: clamp(.95rem, 3.5vw, 1.1rem);
+      font-weight: 800; font-family: 'Nunito', sans-serif;
+      cursor: pointer; color: #fff;
+      background: linear-gradient(135deg, #7d3c98, #e91e8c);
+      box-shadow: 0 6px 0 #5b2c6f;
+      transition: transform .1s, box-shadow .1s;
+    }
+    .back-home-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #5b2c6f; }
+
+    /* ════ MATH — MODE SCREEN ════ */
+    .screen-title {
+      font-size: clamp(1.2rem, 5vw, 1.65rem);
+      color: var(--purple); font-weight: 900;
+      text-align: center; margin: 14px 0 5px;
+    }
+    .screen-sub { text-align: center; color: #999; font-size: .9rem; margin-bottom: 20px; }
+    .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .card-btn {
+      border: none; border-radius: 20px; padding: 20px 12px;
+      cursor: pointer; font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: clamp(.85rem, 3.2vw, 1rem);
+      color: #fff; box-shadow: 0 6px 0 rgba(0,0,0,.2);
+      transition: transform .1s, box-shadow .1s;
+      display: flex; flex-direction: column; align-items: center; gap: 7px;
+    }
+    .card-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(0,0,0,.2); }
+    .card-btn .icon { font-size: 2rem; }
+    .mode-mult  { background: linear-gradient(135deg, #9b59b6, #6c3483); }
+    .mode-div   { background: linear-gradient(135deg, #2980b9, #1a5276); }
+    .mode-combo { background: linear-gradient(135deg, #e67e22, #a04000);
+                  grid-column: span 2; flex-direction: row; justify-content: center;
+                  padding: 16px; gap: 12px; }
+
+    /* ════ MATH — LEVEL SCREEN ════ */
+    #level-screen .back-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+    }
+    .back-btn {
+      background: rgba(155,89,182,.12); border: none; border-radius: 50px;
+      padding: 7px 15px; cursor: pointer;
+      font-family: 'Nunito', sans-serif; font-weight: 800;
+      color: var(--purple); font-size: .88rem;
+    }
+    .back-btn:hover { background: rgba(155,89,182,.22); }
+    #mode-label-lvl { font-weight: 900; font-size: 1rem; color: var(--pink); }
+    .level-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .lv-btn {
+      border: none; border-radius: 20px; padding: 18px 12px;
+      cursor: pointer; font-family: 'Nunito', sans-serif;
+      font-weight: 800; color: #fff;
+      box-shadow: 0 6px 0 rgba(0,0,0,.2);
+      transition: transform .12s, box-shadow .12s;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+      text-align: left; position: relative; overflow: hidden;
+    }
+    .lv-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(0,0,0,.2); }
+    .lv-btn .lv-icon { font-size: 1.8rem; }
+    .lv-btn .lv-name { font-size: clamp(.9rem, 3.5vw, 1.05rem); line-height: 1; }
+    .lv-btn .lv-desc { font-size: .7rem; opacity: .9; font-weight: 600; line-height: 1.3; }
+    .lv-btn .lv-pts  {
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(255,255,255,.25); border-radius: 50px;
+      padding: 2px 8px; font-size: .7rem; font-weight: 900;
+    }
+    .lv1 { background: linear-gradient(135deg, var(--lv1), var(--lv1s)); }
+    .lv2 { background: linear-gradient(135deg, var(--lv2), var(--lv2s)); }
+    .lv3 { background: linear-gradient(135deg, var(--lv3), var(--lv3s)); }
+    .lv4 { background: linear-gradient(135deg, var(--lv4), var(--lv4s)); }
+
+    /* ════ MATH — QUIZ SCREEN ════ */
+    #progress-wrap { margin-bottom: 14px; }
+    #progress-label {
+      font-size: .8rem; color: #999; margin-bottom: 5px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    #quiz-back-btn {
+      background: rgba(155,89,182,.12); border: none; border-radius: 50px;
+      padding: 4px 10px; cursor: pointer;
+      font-family: 'Nunito', sans-serif; font-weight: 800;
+      color: var(--purple); font-size: .76rem; white-space: nowrap; flex-shrink: 0;
+    }
+    #quiz-back-btn:hover { background: rgba(155,89,182,.22); }
+    #prog-text { flex: 1; text-align: center; }
+    #level-pill {
+      border-radius: 50px; padding: 2px 9px;
+      font-size: .7rem; font-weight: 900; color: #fff; flex-shrink: 0;
+    }
+    #progress-track {
+      background: #e0d0f5; border-radius: 50px; height: 11px; overflow: hidden;
+    }
+    #progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink), var(--purple));
+      border-radius: 50px; transition: width .4s ease;
+    }
+    #question-card {
+      background: #fff; border-radius: 26px;
+      padding: clamp(20px, 5vw, 32px);
+      box-shadow: 0 8px 28px rgba(155,89,182,.12);
+      text-align: center; margin-bottom: 15px;
+    }
+    #question-type {
+      font-size: .74rem; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--pink); margin-bottom: 10px;
+    }
+    #question-text {
+      font-size: clamp(1.8rem, 9vw, 2.9rem);
+      font-weight: 900; color: #3d0066; line-height: 1.25; margin-bottom: 6px;
+    }
+    #question-text.long  { font-size: clamp(1rem, 3.8vw, 1.4rem); }
+    #question-text.xlong { font-size: clamp(.88rem, 3.3vw, 1.15rem); }
+    #question-hint { font-size: .82rem; color: #bbb; min-height: 18px; }
+
+    #answer-wrap { display: flex; gap: 10px; margin-bottom: 12px; }
+    #answer-input {
+      flex: 1; border: 3px solid #e0c0f5; border-radius: 16px;
+      padding: 13px 16px; font-size: clamp(1.2rem, 5vw, 1.5rem);
+      font-family: 'Nunito', sans-serif; font-weight: 800;
+      color: #3d0066; outline: none; text-align: center;
+      background: #fdf6ff; transition: border-color .2s;
+    }
+    #answer-input:focus   { border-color: var(--purple); }
+    #answer-input.correct { border-color: var(--green); background: #efffef; }
+    #answer-input.wrong   { border-color: var(--red);   background: #fff3f3; }
+    #submit-btn {
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      color: #fff; border: none; border-radius: 16px;
+      padding: 13px 20px; font-size: 1.4rem; cursor: pointer;
+      box-shadow: 0 5px 0 #6c3483; transition: transform .1s, box-shadow .1s;
+    }
+    #submit-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #6c3483; }
+
+    #numpad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-bottom: 13px; }
+    .num-btn {
+      background: #fff; border: 2px solid #e0c0f5; border-radius: 13px;
+      padding: 13px 0; font-size: clamp(1rem, 4vw, 1.25rem);
+      font-weight: 800; color: #3d0066; cursor: pointer;
+      font-family: 'Nunito', sans-serif; box-shadow: 0 4px 0 #d9b3f0;
+      transition: transform .1s, box-shadow .1s; user-select: none;
+    }
+    .num-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #d9b3f0; }
+    .num-btn.del  { background: #ffe0e0; border-color: #f5c0c0; color: var(--red); box-shadow: 0 4px 0 #f0a0a0; }
+    .num-btn.zero { grid-column: span 2; }
+
+    #feedback {
+      border-radius: 14px; padding: 12px 16px; font-weight: 800;
+      font-size: clamp(.88rem, 3.2vw, 1.05rem); text-align: center;
+      min-height: 48px; display: flex; align-items: center;
+      justify-content: center; gap: 6px;
+      transition: opacity .3s; opacity: 0; margin-bottom: 12px;
+    }
+    #feedback.show { opacity: 1; }
+    #feedback.ok   { background: #d4f8e8; color: #1a6a3a; }
+    #feedback.fail { background: #ffe0e0; color: #900; }
+
+    #next-btn {
+      display: none; width: 100%;
+      background: linear-gradient(135deg, var(--green), #1a7a40);
+      color: #fff; border: none; border-radius: 16px; padding: 15px;
+      font-size: clamp(.95rem, 3.8vw, 1.1rem); font-weight: 800;
+      font-family: 'Nunito', sans-serif; cursor: pointer;
+      box-shadow: 0 6px 0 #0f5028; transition: transform .1s, box-shadow .1s;
+    }
+    #next-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #0f5028; }
+
+    /* ════ MATH — RESULTS ════ */
+    #result-screen {
+      background: #fff; border-radius: 26px;
+      padding: clamp(24px, 5vw, 40px) clamp(18px, 4vw, 32px);
+      box-shadow: 0 8px 28px rgba(155,89,182,.12); text-align: center;
+    }
+    #result-screen h2 { font-size: clamp(1.3rem, 5.5vw, 1.9rem); color: var(--purple); margin-bottom: 4px; }
+    #result-tagline { color: #888; font-size: .9rem; margin-bottom: 18px; }
+    #result-stars { font-size: clamp(2.4rem, 10vw, 3.6rem); letter-spacing: 4px; margin-bottom: 8px; animation: pop .5s ease; }
+    #result-score-text { font-size: clamp(.9rem, 3.5vw, 1.15rem); font-weight: 700; color: #555; margin-bottom: 6px; }
+    #result-score-text span { color: var(--pink); font-weight: 900; font-size: 1.25em; }
+    #result-level-badge {
+      display: inline-block; border-radius: 50px;
+      padding: 4px 16px; color: #fff; font-weight: 800; font-size: .8rem; margin-bottom: 18px;
+    }
+    #result-upgrade { font-size: .85rem; color: var(--orange); font-weight: 700; margin-bottom: 18px; min-height: 18px; }
+    .result-actions { display: flex; flex-direction: column; gap: 10px; }
+    .action-btn {
+      border: none; border-radius: 16px; padding: 14px;
+      font-size: clamp(.9rem, 3.5vw, 1.05rem); font-weight: 800;
+      font-family: 'Nunito', sans-serif; cursor: pointer;
+      box-shadow: 0 5px 0 rgba(0,0,0,.18);
+      transition: transform .1s, box-shadow .1s; color: #fff;
+    }
+    .action-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 rgba(0,0,0,.18); }
+    .btn-replay  { background: linear-gradient(135deg, var(--pink), var(--purple)); }
+    .btn-uplevel { background: linear-gradient(135deg, var(--orange), #a04000); }
+    .btn-chmode  { background: linear-gradient(135deg, #9b59b6, #6c3483); }
+    .btn-home    { background: linear-gradient(135deg, #7d3c98, #e91e8c); }
+
+    /* ════ FIXED BADGES ════ */
+    #streak-badge {
+      position: fixed; top: 68px; right: 13px;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: #fff; border-radius: 50px; padding: 6px 12px;
+      font-weight: 900; font-size: .8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,.22); display: none; z-index: 10;
+    }
+    #total-badge {
+      position: fixed; bottom: 13px; right: 13px;
+      background: linear-gradient(135deg, #7d3c98, var(--pink));
+      color: #fff; border-radius: 14px; padding: 8px 13px;
+      font-weight: 900; font-size: .8rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,.2); z-index: 10;
+      text-align: center; line-height: 1.35;
+    }
+    #total-badge .tb-stars { color: var(--yellow); font-size: .92rem; }
+
+    /* ════ DECORATIVE ════ */
+    .deco {
+      position: fixed; pointer-events: none; z-index: 0;
+      font-size: 1.3rem; opacity: .08;
+      animation: drift 9s ease-in-out infinite;
+    }
+
+    /* ════ ANIMATIONS ════ */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(13px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pop {
+      0%   { transform: scale(.4); }
+      70%  { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%     { transform: translateX(-7px); }
+      40%     { transform: translateX(7px); }
+      60%     { transform: translateX(-5px); }
+      80%     { transform: translateX(5px); }
+    }
+    @keyframes drift {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50%     { transform: translateY(-18px) rotate(12deg); }
+    }
+    .shake { animation: shake .38s ease; }
+  </style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+<div class="deco" style="top:7%;left:3%">⭐</div>
+<div class="deco" style="top:25%;right:3%;animation-delay:2.5s">🌟</div>
+<div class="deco" style="top:58%;left:2%;animation-delay:5s">✨</div>
+<div class="deco" style="top:77%;right:4%;animation-delay:7s">💫</div>
+
+<!-- ════ HEADER ════ -->
+<header>
+  <div class="header-left">
+    <button id="home-btn" onclick="goHome()" title="Menú principal">🏠</button>
+    <h1>📚 Estudia con Milla</h1>
+  </div>
+  <div id="score-bar">
+    <span>⭐ <span id="hdr-stars" class="star-count">0</span></span>
+    <span>🎯 <span id="hdr-pts">0</span></span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ════════ PANTALLA: HOME ════════ -->
+  <div id="home-screen" class="screen active">
+    <div class="home-greeting">
+      <h2>¡Hola, Millaray! 👋</h2>
+      <p>¿Qué estudiamos hoy?</p>
+    </div>
+
+    <!-- Matemática — destacada -->
+    <button id="card-math" class="subj-card" onclick="showScreen('mode-screen')">
+      <span class="s-icon">🔢</span>
+      <div class="s-body">
+        <div class="s-name">Matemática</div>
+        <div class="s-desc">Cálculo mental · Multiplicación · División · Operaciones combinadas</div>
+      </div>
+      <span class="s-cta">Practicar →</span>
+    </button>
+
+    <!-- Grid 2×2 -->
+    <div class="subjects-grid">
+      <button id="card-lang" class="subj-card small" onclick="showComingSoon('lang')">
+        <span class="soon-badge">Próximamente</span>
+        <span class="s-icon">📖</span>
+        <span class="s-name">Lenguaje</span>
+        <span class="s-desc">Lectura y escritura</span>
+      </button>
+
+      <button id="card-sci" class="subj-card small" onclick="showComingSoon('sci')">
+        <span class="soon-badge">Próximamente</span>
+        <span class="s-icon">🔬</span>
+        <span class="s-name">Ciencias</span>
+        <span class="s-desc">Naturaleza y experimentos</span>
+      </button>
+
+      <button id="card-hist" class="subj-card small" onclick="showComingSoon('hist')">
+        <span class="soon-badge">Próximamente</span>
+        <span class="s-icon">🏛️</span>
+        <span class="s-name">Historia</span>
+        <span class="s-desc">Chile y el mundo</span>
+      </button>
+
+      <button id="card-eng" class="subj-card small" onclick="showComingSoon('eng')">
+        <span class="soon-badge">Próximamente</span>
+        <span class="s-icon">🌎</span>
+        <span class="s-name">Inglés</span>
+        <span class="s-desc">Vocabulary &amp; grammar</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════ PANTALLA: PRÓXIMAMENTE ════════ -->
+  <div id="coming-soon-screen" class="screen">
+    <div class="cs-icon-wrap" id="cs-icon-wrap">
+      <span id="cs-icon-emoji">📖</span>
+    </div>
+    <h2 id="cs-title">Lenguaje</h2>
+    <p id="cs-subtitle">¡Muy pronto aquí!</p>
+    <div class="cs-card">
+      <p class="cs-soon-text">🚧 En construcción</p>
+      <p id="cs-detail">Estamos preparando ejercicios increíbles para ti. ¡Vuelve pronto, Millaray!</p>
+    </div>
+    <button class="back-home-btn" onclick="showScreen('home-screen')">🏠 Volver al menú principal</button>
+  </div>
+
+  <!-- ════════ PANTALLA: MODO (Matemática) ════════ -->
+  <div id="mode-screen" class="screen">
+    <h2 class="screen-title">🔢 Matemática</h2>
+    <p class="screen-sub">Elige qué tipo de operación practicar</p>
+    <div class="mode-grid">
+      <button class="card-btn mode-mult" onclick="pickMode('mult')">
+        <span class="icon">✖️</span>
+        Multiplicación
+      </button>
+      <button class="card-btn mode-div" onclick="pickMode('div')">
+        <span class="icon">➗</span>
+        División
+      </button>
+      <button class="card-btn mode-combo" onclick="pickMode('combo')">
+        <span class="icon">🔢</span>
+        Operaciones Combinadas
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════ PANTALLA: NIVEL ════════ -->
+  <div id="level-screen" class="screen">
+    <div class="back-row">
+      <button class="back-btn" onclick="showScreen('mode-screen')">← Volver</button>
+      <span id="mode-label-lvl"></span>
+    </div>
+    <h2 class="screen-title" style="margin-top:0">Elige tu nivel</h2>
+    <p class="screen-sub">Más difícil = ¡más puntos!</p>
+    <div class="level-grid">
+      <button class="lv-btn lv1" onclick="startGame(1)">
+        <span class="lv-pts">×1 pts</span>
+        <span class="lv-icon">🌱</span>
+        <span class="lv-name">Nivel 1 · Fácil</span>
+        <span class="lv-desc">Números hasta 10<br>Operaciones básicas</span>
+      </button>
+      <button class="lv-btn lv2" onclick="startGame(2)">
+        <span class="lv-pts">×2 pts</span>
+        <span class="lv-icon">🔥</span>
+        <span class="lv-name">Nivel 2 · Normal</span>
+        <span class="lv-desc">Hasta 100<br>Multiplicación 2 cifras</span>
+      </button>
+      <button class="lv-btn lv3" onclick="startGame(3)">
+        <span class="lv-pts">×3 pts</span>
+        <span class="lv-icon">⚡</span>
+        <span class="lv-name">Nivel 3 · Difícil</span>
+        <span class="lv-desc">Hasta 1.000<br>Operaciones combinadas</span>
+      </button>
+      <button class="lv-btn lv4" onclick="startGame(4)">
+        <span class="lv-pts">×4 pts</span>
+        <span class="lv-icon">🏆</span>
+        <span class="lv-name">Nivel 4 · Desafío</span>
+        <span class="lv-desc">Problemas aplicados<br>Fracciones y porcentajes</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════ PANTALLA: QUIZ ════════ -->
+  <div id="quiz-screen" class="screen">
+    <div id="progress-wrap">
+      <div id="progress-label">
+        <button id="quiz-back-btn" onclick="confirmMenu()">🏠 Menú</button>
+        <span id="prog-text">Pregunta 1 de 10</span>
+        <span id="level-pill">Nivel 1</span>
+      </div>
+      <div id="progress-track"><div id="progress-fill" style="width:0%"></div></div>
+    </div>
+    <div id="question-card">
+      <div id="question-type">Multiplicación</div>
+      <div id="question-text">6 × 7 = ?</div>
+      <div id="question-hint"></div>
+    </div>
+    <div id="answer-wrap">
+      <input id="answer-input" type="number" inputmode="numeric"
+             placeholder="Tu respuesta" autocomplete="off" />
+      <button id="submit-btn" onclick="submitAnswer()">✓</button>
+    </div>
+    <div id="numpad">
+      <button class="num-btn" onclick="padPress(7)">7</button>
+      <button class="num-btn" onclick="padPress(8)">8</button>
+      <button class="num-btn" onclick="padPress(9)">9</button>
+      <button class="num-btn" onclick="padPress(4)">4</button>
+      <button class="num-btn" onclick="padPress(5)">5</button>
+      <button class="num-btn" onclick="padPress(6)">6</button>
+      <button class="num-btn" onclick="padPress(1)">1</button>
+      <button class="num-btn" onclick="padPress(2)">2</button>
+      <button class="num-btn" onclick="padPress(3)">3</button>
+      <button class="num-btn del" onclick="padDel()">⌫</button>
+      <button class="num-btn zero" onclick="padPress(0)">0</button>
+    </div>
+    <div id="feedback"></div>
+    <button id="next-btn" onclick="nextQuestion()">Siguiente →</button>
+  </div>
+
+  <!-- ════════ PANTALLA: RESULTADOS ════════ -->
+  <div id="result-screen" class="screen">
+    <h2 id="result-title">¡Excelente, Millaray!</h2>
+    <p id="result-tagline"></p>
+    <div id="result-stars">⭐⭐⭐</div>
+    <p id="result-score-text">Correctas: <span id="res-correct">0</span> / 10</p>
+    <div id="result-level-badge">Nivel 1 · Fácil</div>
+    <p id="result-upgrade"></p>
+    <div class="result-actions">
+      <button class="action-btn btn-replay"  onclick="replayGame()">🔄 Jugar de nuevo</button>
+      <button class="action-btn btn-uplevel" id="uplevel-btn" onclick="goNextLevel()" style="display:none">⬆️ Subir al siguiente nivel</button>
+      <button class="action-btn btn-chmode"  onclick="showScreen('mode-screen')">🔢 Cambiar modo</button>
+      <button class="action-btn btn-home"    onclick="showScreen('home-screen')">🏠 Menú principal</button>
+    </div>
+  </div>
+
+</main>
+
+<div id="streak-badge">🔥 Racha: <span id="streak-num">3</span></div>
+<div id="total-badge">
+  <div class="tb-stars" id="tb-stars">⭐ 0</div>
+  <div style="font-size:.7rem">puntos totales</div>
+  <div id="tb-pts" style="font-size:1rem;font-weight:900">0</div>
+</div>
+
+<script>
+// ════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════
+let mode  = 'mult';
+let level = 1;
+const TOTAL = 10;
+let questions = [], qIndex = 0;
+let correct = 0, streak = 0;
+let totalPts = 0, answered = false;
+
+// ════════════════════════════════════════
+//  NAVIGATION
+// ════════════════════════════════════════
+const HOME_SCREEN = 'home-screen';
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  // Show home button in header on every screen except home itself
+  const btn = document.getElementById('home-btn');
+  btn.style.display = (id === HOME_SCREEN) ? 'none' : 'flex';
+  window.scrollTo(0, 0);
+}
+
+function goHome() {
+  // Called from header home button — no quiz in progress here
+  showScreen(HOME_SCREEN);
+}
+
+function confirmMenu() {
+  // Called from within the quiz
+  if (confirm('¿Segura que quieres salir? Perderás el progreso de esta sesión.')) {
+    hideStreak();
+    showScreen(HOME_SCREEN);
+  }
+}
+
+// ════════════════════════════════════════
+//  COMING SOON
+// ════════════════════════════════════════
+const CS_DATA = {
+  lang: {
+    icon: '📖', name: 'Lenguaje',
+    bg: 'linear-gradient(135deg,#2980b9,#1abc9c)',
+    detail: 'Comprensión lectora, ortografía, redacción y más. ¡Muy pronto, Millaray!'
+  },
+  sci: {
+    icon: '🔬', name: 'Ciencias',
+    bg: 'linear-gradient(135deg,#27ae60,#f39c12)',
+    detail: 'El cuerpo humano, los ecosistemas, experimentos y el universo. ¡Pronto!'
+  },
+  hist: {
+    icon: '🏛️', name: 'Historia',
+    bg: 'linear-gradient(135deg,#e67e22,#c0392b)',
+    detail: 'Pueblos originarios, historia de Chile, geografía y líneas de tiempo. ¡Pronto!'
+  },
+  eng: {
+    icon: '🌎', name: 'Inglés',
+    bg: 'linear-gradient(135deg,#8e44ad,#2980b9)',
+    detail: 'Vocabulary, numbers, colours, animals and basic sentences. Coming soon!'
+  },
+};
+
+function showComingSoon(key) {
+  const d = CS_DATA[key];
+  document.getElementById('cs-icon-emoji').textContent    = d.icon;
+  document.getElementById('cs-icon-wrap').style.background = d.bg;
+  document.getElementById('cs-title').textContent         = d.name;
+  document.getElementById('cs-detail').textContent        = d.detail;
+  showScreen('coming-soon-screen');
+}
+
+// ════════════════════════════════════════
+//  HELPERS
+// ════════════════════════════════════════
+function rnd(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+function pick(arr)      { return arr[Math.floor(Math.random() * arr.length)]; }
+
+const LEVEL_META = {
+  1: { name: 'Nivel 1 · Fácil',   pill: 'Nivel 1 🌱', color: 'var(--lv1)', mult: 1 },
+  2: { name: 'Nivel 2 · Normal',  pill: 'Nivel 2 🔥', color: 'var(--lv2)', mult: 2 },
+  3: { name: 'Nivel 3 · Difícil', pill: 'Nivel 3 ⚡', color: 'var(--lv3)', mult: 3 },
+  4: { name: 'Nivel 4 · Desafío', pill: 'Nivel 4 🏆', color: 'var(--lv4)', mult: 4 },
+};
+const MODE_LABELS = {
+  mult:  'Multiplicación ✖️',
+  div:   'División ➗',
+  combo: 'Operaciones Combinadas 🔢',
+};
+
+// ════════════════════════════════════════
+//  GENERATORS — MULTIPLICACIÓN
+// ════════════════════════════════════════
+function genMult() {
+  let a, b, text, answer, hint = '';
+  if (level === 1) {
+    a = rnd(2,9); b = rnd(2,9);
+    text = `${a} × ${b} = ?`; answer = a*b;
+  } else if (level === 2) {
+    const r = Math.random();
+    if (r < 0.4)       { a = rnd(2,12);  b = rnd(2,12); }
+    else if (r < 0.75) { a = rnd(11,25); b = rnd(2,9); hint = `Descompone: (${Math.floor(a/10)*10} + ${a%10}) × ${b}`; }
+    else               { a = rnd(1,9)*10; b = rnd(2,9); }
+    text = `${a} × ${b} = ?`; answer = a*b;
+  } else if (level === 3) {
+    const r = Math.random();
+    if (r < 0.35)      { a = rnd(11,49);  b = rnd(11,25); hint = 'Usa la propiedad distributiva'; }
+    else if (r < 0.65) { a = rnd(101,499); b = rnd(2,9); }
+    else               { a = rnd(1,9)*100; b = rnd(2,9); }
+    text = `${a} × ${b} = ?`; answer = a*b;
+  } else {
+    const tpls = [
+      () => { const f=rnd(3,8),e=rnd(4,9); return { t:`Una caja tiene ${f} filas con ${e} chocolates cada una. ¿Cuántos chocolates hay en total?`, a:f*e }; },
+      () => { const p=rnd(3,9),d=rnd(4,8); return { t:`Un edificio tiene ${p} pisos y ${d} departamentos por piso. ¿Cuántos departamentos hay?`, a:p*d }; },
+      () => { const s=rnd(2,6),h=rnd(3,8); return { t:`Millaray estudia ${h} horas al día durante ${s} días. ¿Cuántas horas estudia en total?`, a:s*h }; },
+      () => { const r2=rnd(12,29),c=rnd(11,25); return { t:`Un estadio tiene ${r2} secciones con ${c} asientos cada una. ¿Cuántos asientos en total?`, a:r2*c }; },
+      () => { const pk=rnd(4,9),qt=rnd(12,25); return { t:`Hay ${pk} cajas con ${qt} huevos cada una. ¿Cuántos huevos en total?`, a:pk*qt }; },
+    ];
+    const t = pick(tpls)();
+    text = t.t; answer = t.a; hint = 'Identifica los factores del problema';
+  }
+  return { text, answer, hint, type: MODE_LABELS.mult };
+}
+
+// ════════════════════════════════════════
+//  GENERATORS — DIVISIÓN
+// ════════════════════════════════════════
+function genDiv() {
+  let a, b, text, answer, hint = '';
+  if (level === 1) {
+    b = rnd(2,5); a = b*rnd(2,9);
+    text = `${a} ÷ ${b} = ?`; answer = a/b; hint = `¿Cuántas veces cabe ${b} en ${a}?`;
+  } else if (level === 2) {
+    const r = Math.random();
+    if (r < 0.5) { b = rnd(2,9); a = b*rnd(2,12); }
+    else         { b = rnd(2,5); a = b*rnd(10,20); }
+    text = `${a} ÷ ${b} = ?`; answer = a/b;
+  } else if (level === 3) {
+    const r = Math.random();
+    if (r < 0.4)      { b = rnd(2,9);   a = b*rnd(10,99); }
+    else if (r < 0.7) { b = rnd(11,25); a = b*rnd(2,9);  hint = `¿Cuántas veces cabe ${b}?`; }
+    else              { const q=rnd(2,9); b=rnd(2,9)*10; a=b*q; }
+    text = `${a} ÷ ${b} = ?`; answer = a/b;
+  } else {
+    const tpls = [
+      () => { const n=rnd(3,8),per=rnd(4,9); return { t:`${n*per} lápices se reparten en partes iguales entre ${n} niños. ¿Cuántos le tocan a cada uno?`, a:per }; },
+      () => { const buses=rnd(3,7),each=rnd(8,15); return { t:`${buses*each} estudiantes viajan en ${buses} buses iguales. ¿Cuántos van por bus?`, a:each }; },
+      () => { const days=rnd(4,7),per=rnd(3,8); return { t:`Millaray lee ${days*per} páginas en ${days} días leyendo lo mismo cada día. ¿Cuántas páginas lee por día?`, a:per }; },
+      () => { const bx=rnd(4,8),per=rnd(5,12); return { t:`Se compran ${bx*per} naranjas y se ponen en ${bx} bolsas iguales. ¿Cuántas naranjas hay en cada bolsa?`, a:per }; },
+    ];
+    const t = pick(tpls)();
+    text = t.t; answer = t.a; hint = 'Identifica el total y las partes iguales';
+  }
+  return { text, answer, hint, type: MODE_LABELS.div };
+}
+
+// ════════════════════════════════════════
+//  GENERATORS — COMBINADAS
+// ════════════════════════════════════════
+function genCombo() {
+  let text, answer, hint = '', type = MODE_LABELS.combo;
+  if (level === 1) {
+    const a=rnd(2,5), b=rnd(2,5), prod=a*b;
+    if (Math.random()<0.5) { const c=rnd(1,8); text=`${a} × ${b} + ${c} = ?`; answer=prod+c; hint='Primero ×, luego +'; }
+    else                   { const c=rnd(1,Math.min(prod-1,8)); text=`${a} × ${b} − ${c} = ?`; answer=prod-c; hint='Primero ×, luego −'; }
+  } else if (level === 2) {
+    const r=Math.random();
+    if (r<0.33)      { const a=rnd(2,9),b=rnd(2,9),c=rnd(1,20); text=`${a} × ${b} + ${c} = ?`; answer=a*b+c; hint='Multiplica primero'; }
+    else if (r<0.66) { const a=rnd(3,9),b=rnd(3,9),p=a*b,c=rnd(1,p-1); text=`${a} × ${b} − ${c} = ?`; answer=p-c; hint='Multiplica primero'; }
+    else             { const a=rnd(2,8),b=rnd(2,8),c=rnd(2,6); text=`(${a} + ${b}) × ${c} = ?`; answer=(a+b)*c; hint='Paréntesis primero'; }
+  } else if (level === 3) {
+    const r=Math.random();
+    if (r<0.25) {
+      const a=rnd(3,9),b=rnd(3,9),c=rnd(2,7),d=rnd(2,7);
+      text=`${a}×${b} + ${c}×${d} = ?`; answer=a*b+c*d; hint='Resuelve cada × por separado';
+    } else if (r<0.5) {
+      const a=rnd(5,9),b=rnd(5,9),c=rnd(2,6),d=rnd(2,6);
+      const p1=a*b, p2=c*d;
+      if (p1>=p2) { text=`${a}×${b} − ${c}×${d} = ?`; answer=p1-p2; }
+      else        { text=`${c}×${d} − ${a}×${b} = ?`; answer=p2-p1; }
+      hint='Multiplica primero, luego resta';
+    } else if (r<0.75) {
+      const a=rnd(3,9),b=rnd(3,9),c=rnd(2,6),d=rnd(2,6);
+      text=`(${a} + ${b}) × (${c} + ${d}) = ?`; answer=(a+b)*(c+d); hint='Resuelve cada paréntesis primero';
+    } else {
+      const b2=rnd(2,6),a2=rnd(2,9)*b2,c2=rnd(2,4);
+      text=`${a2} × ${c2} ÷ ${b2} = ?`; answer=a2*c2/b2;
+      if (!Number.isInteger(answer)) { const a3=rnd(2,9),b3=rnd(2,5),c3=b3*rnd(2,6); text=`${a3} × ${c3} ÷ ${b3} = ?`; answer=a3*c3/b3; }
+      hint='De izquierda a derecha';
+    }
+  } else {
+    const r=Math.random();
+    if (r<0.3) {
+      const fracs=[
+        {sym:'½',num:1,den:2},{sym:'¼',num:1,den:4},{sym:'¾',num:3,den:4},
+        {sym:'⅓',num:1,den:3},{sym:'⅔',num:2,den:3},{sym:'⅕',num:1,den:5},
+        {sym:'⅖',num:2,den:5},{sym:'⅗',num:3,den:5},
+      ];
+      const f=pick(fracs), base=rnd(2,18)*f.den;
+      answer=base*f.num/f.den;
+      text=`¿Cuánto es ${f.sym} de ${base}?`;
+      hint=`Divide ${base} ÷ ${f.den}${f.num>1?`, luego × ${f.num}`:''}`;
+      type='Fracción 🔢';
+    } else if (r<0.6) {
+      const pcts=[
+        {pct:10,fn:x=>x/10,   base:()=>rnd(1,9)*10},
+        {pct:25,fn:x=>x/4,    base:()=>rnd(1,9)*4},
+        {pct:50,fn:x=>x/2,    base:()=>rnd(2,18)*2},
+        {pct:75,fn:x=>x*3/4,  base:()=>rnd(1,8)*4},
+        {pct:20,fn:x=>x/5,    base:()=>rnd(1,9)*5},
+      ];
+      const p=pick(pcts), base=p.base();
+      answer=p.fn(base);
+      text=`¿Cuánto es el ${p.pct}% de ${base}?`;
+      hint=p.pct===10?'Divide ÷ 10':p.pct===50?'Divide ÷ 2':p.pct===25?'Divide ÷ 4':p.pct===75?'÷ 4 luego × 3':'Divide ÷ 5';
+      type='Porcentaje %';
+    } else {
+      const tpls=[
+        () => { const a=rnd(3,7),b=rnd(3,7),c=rnd(2,5); return { t:`Ana tiene ${a} cajas con ${b} libros cada una y ${c} libros sueltos. ¿Cuántos libros tiene?`, a:a*b+c, h:'Multiplica primero, luego suma' }; },
+        () => { const d=rnd(2,4),u=rnd(2,5),pp=rnd(2,6); return { t:`Hay ${d*pp+u} galletas. Se comen ${u} y el resto se reparte entre ${d} amigos. ¿Cuántas le tocan a cada uno?`, a:pp, h:'Resta primero, luego divide' }; },
+        () => { const p=rnd(3,9)*100,c=rnd(2,5),des=rnd(1,3)*100; return { t:`Cada cuaderno cuesta $${p}. Millaray compra ${c} cuadernos con descuento de $${des}. ¿Cuánto paga?`, a:p*c-des, h:'Multiplica primero, luego descuenta' }; },
+      ];
+      const t=pick(tpls)();
+      text=t.t; answer=t.a; hint=t.h; type='Problema Aplicado 📝';
+    }
+  }
+  answer=Math.round(answer);
+  return { text, answer, hint, type };
+}
+
+// ════════════════════════════════════════
+//  BUILD + GAME FLOW
+// ════════════════════════════════════════
+function buildQuestions() {
+  const gen = mode==='mult' ? genMult : mode==='div' ? genDiv : genCombo;
+  return Array.from({length:TOTAL}, gen);
+}
+
+function pickMode(m) {
+  mode = m;
+  const labels = { mult:'Multiplicación ✖️', div:'División ➗', combo:'Op. Combinadas 🔢' };
+  document.getElementById('mode-label-lvl').textContent = labels[m];
+  showScreen('level-screen');
+}
+
+function startGame(lv) {
+  level = lv;
+  questions = buildQuestions();
+  qIndex = 0; correct = 0; streak = 0; answered = false;
+  const meta = LEVEL_META[level];
+  const pill = document.getElementById('level-pill');
+  pill.textContent       = meta.pill;
+  pill.style.background  = meta.color;
+  showScreen('quiz-screen');
+  showQuestion();
+}
+
+function showQuestion() {
+  answered = false;
+  const q  = questions[qIndex];
+  document.getElementById('question-type').textContent = q.type;
+  const qt = document.getElementById('question-text');
+  qt.textContent = q.text;
+  qt.className   = q.text.length>60 ? 'xlong' : q.text.length>35 ? 'long' : '';
+  document.getElementById('question-hint').textContent = q.hint||'';
+  const inp = document.getElementById('answer-input');
+  inp.value=''; inp.className=''; inp.disabled=false;
+  const fb = document.getElementById('feedback');
+  fb.className=''; fb.textContent='';
+  document.getElementById('next-btn').style.display   = 'none';
+  document.getElementById('submit-btn').style.display = 'block';
+  updateProgress();
+  inp.focus();
+}
+
+function updateProgress() {
+  const pct = Math.round((qIndex/TOTAL)*100);
+  document.getElementById('prog-text').textContent    = `Pregunta ${qIndex+1} de ${TOTAL}`;
+  document.getElementById('progress-fill').style.width = pct+'%';
+}
+
+function submitAnswer() {
+  if (answered) return;
+  const inp = document.getElementById('answer-input');
+  const val = inp.value.trim();
+  if (!val) { inp.focus(); return; }
+  const userAns = parseInt(val, 10);
+  if (isNaN(userAns)) { inp.focus(); return; }
+  answered = true;
+  inp.disabled = true;
+  const q    = questions[qIndex];
+  const fb   = document.getElementById('feedback');
+  const isOk = userAns === q.answer;
+  const meta = LEVEL_META[level];
+  if (isOk) {
+    correct++; streak++;
+    const pts = 10*meta.mult + (streak>=3?5:0);
+    totalPts += pts;
+    inp.classList.add('correct');
+    const praise = streak>=5
+      ? pick(['🔥 ¡Racha imparable!','🚀 ¡Eres una genio!','👑 ¡Increíble!'])
+      : streak>=3
+      ? pick(['⭐ ¡'+streak+' seguidas! ¡Brillante!','🌟 ¡Racha de fuego!'])
+      : pick(['✅ ¡Correcto! ¡Muy bien!','🎉 ¡Exacto!','💪 ¡Genial, Millaray!','🌈 ¡Lo lograste!','🧠 ¡Eso es!']);
+    fb.textContent = `${praise}  +${pts} pts`;
+    fb.className   = 'show ok';
+    if (streak>=3) showStreak();
+    if (correct%5===0) spawnConfetti();
+  } else {
+    streak=0; hideStreak();
+    inp.classList.add('wrong','shake');
+    setTimeout(()=>inp.classList.remove('shake'),400);
+    fb.textContent = `❌ Era ${q.answer}. ¡Tú puedes la próxima!`;
+    fb.className   = 'show fail';
+  }
+  updateHdrScore();
+  document.getElementById('next-btn').style.display   = 'block';
+  document.getElementById('submit-btn').style.display = 'none';
+}
+
+function nextQuestion() {
+  qIndex++;
+  if (qIndex>=TOTAL) showResults();
+  else showQuestion();
+}
+
+function showStreak() {
+  document.getElementById('streak-num').textContent         = streak;
+  document.getElementById('streak-badge').style.display = 'block';
+}
+function hideStreak() { document.getElementById('streak-badge').style.display='none'; }
+
+function updateHdrScore() {
+  const stars = Math.floor(totalPts/50);
+  document.getElementById('hdr-stars').textContent = stars;
+  document.getElementById('hdr-pts').textContent   = totalPts;
+  document.getElementById('tb-stars').textContent  = '⭐ '+stars;
+  document.getElementById('tb-pts').textContent    = totalPts;
+}
+
+// ════════════════════════════════════════
+//  RESULTS
+// ════════════════════════════════════════
+const TIER_DATA = [
+  { title:'¡Sigue practicando, Millaray!', tag:'¡Cada intento cuenta! 💪',               stars:'⭐'     },
+  { title:'¡Bien hecho, Millaray!',         tag:'¡Vas muy bien, sigue así! 😊',           stars:'⭐⭐'   },
+  { title:'¡Excelente, Millaray!',          tag:'¡Eres una crack del cálculo mental! 🏆', stars:'⭐⭐⭐' },
+];
+
+function showResults() {
+  hideStreak();
+  const pct  = correct/TOTAL;
+  const tier = pct<0.5?0:pct<0.8?1:2;
+  const td   = TIER_DATA[tier];
+  const meta = LEVEL_META[level];
+  document.getElementById('result-title').textContent   = td.title;
+  document.getElementById('result-tagline').textContent = td.tag;
+  document.getElementById('result-stars').textContent   = td.stars;
+  document.getElementById('res-correct').textContent    = correct;
+  const badge = document.getElementById('result-level-badge');
+  badge.textContent      = meta.name;
+  badge.style.background = meta.color;
+  const upgrade = document.getElementById('result-upgrade');
+  const upBtn   = document.getElementById('uplevel-btn');
+  if (tier>=1 && level<4) {
+    const nm = LEVEL_META[level+1];
+    upgrade.textContent = `¡Buen resultado! ¿Te atreves con el ${nm.name}?`;
+    upBtn.style.display = 'block';
+    upBtn.textContent   = `⬆️ Subir a ${nm.name}`;
+  } else {
+    upgrade.textContent = tier===2&&level===4 ? '🏆 ¡Completaste el nivel máximo!' : '';
+    upBtn.style.display = 'none';
+  }
+  showScreen('result-screen');
+  if (tier===2) spawnConfetti(120);
+}
+
+function replayGame()  { startGame(level); }
+function goNextLevel() { startGame(level+1); }
+
+// ════════════════════════════════════════
+//  NUMPAD
+// ════════════════════════════════════════
+function padPress(n) {
+  const inp = document.getElementById('answer-input');
+  if (inp.disabled) return;
+  if (inp.value.length<6) inp.value+=n;
+  inp.focus();
+}
+function padDel() {
+  const inp = document.getElementById('answer-input');
+  if (inp.disabled) return;
+  inp.value = inp.value.slice(0,-1);
+  inp.focus();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter') {
+    if (!answered) submitAnswer();
+    else if (document.getElementById('next-btn').style.display!=='none') nextQuestion();
+  }
+});
+
+// ════════════════════════════════════════
+//  CONFETTI
+// ════════════════════════════════════════
+function spawnConfetti(count=55) {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx    = canvas.getContext('2d');
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  const colors=['#e91e8c','#9b59b6','#f1c40f','#27ae60','#2980b9','#e67e22'];
+  const pieces=Array.from({length:count},()=>({
+    x:Math.random()*canvas.width, y:-10-Math.random()*80,
+    w:rnd(6,12), h:rnd(10,18), color:pick(colors),
+    rot:Math.random()*Math.PI*2, rs:(Math.random()-.5)*.14,
+    vx:(Math.random()-.5)*3, vy:2+Math.random()*3,
+  }));
+  let frame;
+  (function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive=false;
+    for(const p of pieces){
+      p.x+=p.vx; p.y+=p.vy; p.rot+=p.rs;
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+      if(p.y<canvas.height) alive=true;
+    }
+    if(alive) frame=requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  })();
+}
+
+// ════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════
+updateHdrScore();
+</script>
+</body>
+</html>
