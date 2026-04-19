@@ -48,6 +48,16 @@ Para activar una materia:
 2. Crear pantalla de temas similar a la de Inglés
 3. Agregar banco de preguntas en el JS
 
+## GitHub Pages
+La app está publicada en https://qcarlosenrique.github.io/Milla-app/
+**Después de cada modificación exitosa al index.html, hacer siempre:**
+```bash
+git add index.html
+git commit -m "descripción del cambio"
+git push origin main
+```
+Los cambios tardan 1-3 minutos en verse en la web. Recarga forzada con Ctrl+Shift+R.
+
 ## Convenciones
 - Todo el texto en español (excepto Inglés que es bilingüe)
 - Tono motivador, nombre "Millaray" en los mensajes de feedback
