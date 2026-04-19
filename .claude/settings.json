@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(git mv *)",
+      "Bash(mkdir *)",
+      "Bash(mv *)",
+      "Bash(rm *)",
+      "Bash(cp *)",
+      "Bash(start *)",
+      "Bash(type *)",
+      "Bash(pandoc *)",
+      "Bash(python *)",
+      "Bash(pip *)"
+    ]
+  }
+}
