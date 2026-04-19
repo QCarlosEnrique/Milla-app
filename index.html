@@ -414,6 +414,246 @@
       50%     { transform: translateY(-18px) rotate(12deg); }
     }
     .shake { animation: shake .38s ease; }
+
+    /* ════ INGLÉS — BLOQUES ════ */
+    .eng-blocks-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .eng-block-card {
+      border: none; border-radius: 20px; padding: 18px 14px;
+      cursor: pointer; font-family: 'Nunito', sans-serif;
+      font-weight: 800; color: #fff;
+      box-shadow: 0 7px 0 rgba(0,0,0,.2);
+      transition: transform .12s, box-shadow .12s;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+      text-align: left;
+    }
+    .eng-block-card:active { transform: translateY(5px); box-shadow: 0 2px 0 rgba(0,0,0,.2); }
+    .eb-icon  { font-size: 2rem; }
+    .eb-title { font-size: clamp(.88rem, 3.3vw, 1rem); line-height: 1.2; }
+    .eb-desc  { font-size: .68rem; opacity: .85; font-weight: 600; line-height: 1.3; }
+    .eb-count {
+      background: rgba(255,255,255,.25); border-radius: 50px;
+      padding: 2px 8px; font-size: .65rem; font-weight: 900; margin-top: 3px;
+    }
+
+    /* ════ INGLÉS — QUIZ ════ */
+    #eng-progress-wrap { margin-bottom: 14px; }
+    #eng-progress-label {
+      font-size: .8rem; color: #999; margin-bottom: 5px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    #eng-quiz-back-btn {
+      background: rgba(142,68,173,.12); border: none; border-radius: 50px;
+      padding: 4px 10px; cursor: pointer;
+      font-family: 'Nunito', sans-serif; font-weight: 800;
+      color: #8e44ad; font-size: .76rem; white-space: nowrap; flex-shrink: 0;
+    }
+    #eng-quiz-back-btn:hover { background: rgba(142,68,173,.22); }
+    #eng-prog-text { flex: 1; text-align: center; }
+    #eng-block-pill {
+      border-radius: 50px; padding: 2px 9px;
+      font-size: .7rem; font-weight: 900; color: #fff; flex-shrink: 0;
+    }
+    #eng-progress-track {
+      background: #e0d0f5; border-radius: 50px; height: 11px; overflow: hidden;
+    }
+    #eng-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2980b9, #8e44ad);
+      border-radius: 50px; transition: width .4s ease;
+    }
+    #eng-question-card {
+      background: #fff; border-radius: 26px;
+      padding: clamp(20px, 5vw, 32px);
+      box-shadow: 0 8px 28px rgba(142,68,173,.12);
+      text-align: center; margin-bottom: 15px;
+    }
+    #eng-q-label {
+      font-size: .74rem; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: #8e44ad; margin-bottom: 10px;
+    }
+    #eng-q-text {
+      font-size: clamp(.95rem, 3.8vw, 1.3rem);
+      font-weight: 900; color: #3d0066; line-height: 1.45;
+    }
+    #eng-options-wrap {
+      display: flex; flex-direction: column; gap: 9px; margin-bottom: 12px;
+    }
+    .eng-opt-btn {
+      width: 100%; border: 2px solid #e0c0f5; border-radius: 14px;
+      padding: 12px 16px; background: #fff;
+      font-family: 'Nunito', sans-serif; font-weight: 700;
+      font-size: clamp(.88rem, 3.2vw, 1rem); color: #3d0066;
+      cursor: pointer; text-align: left;
+      display: flex; align-items: center; gap: 10px;
+      transition: background .15s, border-color .15s;
+    }
+    .eng-opt-btn:hover:not(:disabled) { background: #fdf0ff; border-color: #8e44ad; }
+    .eng-opt-btn.correct { background: #d4f8e8; border-color: var(--green); color: #1a6a3a; }
+    .eng-opt-btn.wrong   { background: #ffe0e0; border-color: var(--red);   color: #900; }
+    .eng-opt-btn:disabled { cursor: default; }
+    .opt-label {
+      background: linear-gradient(135deg, #8e44ad, #2980b9);
+      color: #fff; border-radius: 8px; padding: 2px 8px;
+      font-size: .75rem; font-weight: 900; flex-shrink: 0;
+      min-width: 26px; text-align: center;
+    }
+    .eng-opt-btn.correct .opt-label { background: var(--green); }
+    .eng-opt-btn.wrong   .opt-label { background: var(--red); }
+    .eng-tf-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .eng-tf-btn {
+      border: none; border-radius: 16px; padding: 18px;
+      font-family: 'Nunito', sans-serif; font-weight: 900;
+      font-size: clamp(1rem, 4vw, 1.2rem); cursor: pointer;
+      transition: transform .1s, box-shadow .1s;
+    }
+    .true-btn  { background: linear-gradient(135deg,#27ae60,#1a7a40); color:#fff; box-shadow:0 5px 0 #0d5c2e; }
+    .false-btn { background: linear-gradient(135deg,#e74c3c,#922b21); color:#fff; box-shadow:0 5px 0 #7b241c; }
+    .eng-tf-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 rgba(0,0,0,.3); }
+    .eng-tf-btn.correct { outline: 4px solid #27ae60; }
+    .eng-tf-btn.wrong   { opacity: .45; }
+    .eng-tf-btn:disabled { cursor: default; }
+    #eng-feedback {
+      border-radius: 14px; padding: 12px 16px; font-weight: 800;
+      font-size: clamp(.85rem, 3.2vw, 1rem); text-align: center;
+      min-height: 48px; display: flex; align-items: center;
+      justify-content: center; gap: 6px;
+      transition: opacity .3s; opacity: 0; margin-bottom: 12px;
+    }
+    #eng-feedback.show { opacity: 1; }
+    #eng-feedback.ok   { background: #d4f8e8; color: #1a6a3a; }
+    #eng-feedback.fail { background: #ffe0e0; color: #900; }
+    #eng-next-btn {
+      display: none; width: 100%;
+      background: linear-gradient(135deg, var(--green), #1a7a40);
+      color: #fff; border: none; border-radius: 16px; padding: 15px;
+      font-size: clamp(.95rem, 3.8vw, 1.1rem); font-weight: 800;
+      font-family: 'Nunito', sans-serif; cursor: pointer;
+      box-shadow: 0 6px 0 #0f5028; transition: transform .1s, box-shadow .1s;
+    }
+    #eng-next-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #0f5028; }
+
+    /* ════ INGLÉS — RESULTADOS ════ */
+    #eng-result-inner {
+      background: #fff; border-radius: 26px;
+      padding: clamp(24px,5vw,40px) clamp(18px,4vw,32px);
+      box-shadow: 0 8px 28px rgba(142,68,173,.12); text-align: center;
+    }
+    #eng-res-title   { font-size: clamp(1.3rem,5.5vw,1.9rem); color: #8e44ad; margin-bottom: 4px; }
+    #eng-res-tagline { color: #888; font-size: .9rem; margin-bottom: 18px; }
+    #eng-res-stars   { font-size: clamp(2.4rem,10vw,3.6rem); letter-spacing: 4px; margin-bottom: 8px; animation: pop .5s ease; }
+    #eng-res-score   { font-size: clamp(.9rem,3.5vw,1.15rem); font-weight: 700; color: #555; margin-bottom: 6px; }
+    #eng-res-correct { color: var(--pink); font-weight: 900; font-size: 1.2em; }
+    #eng-res-badge   {
+      display: inline-block; border-radius: 50px;
+      padding: 4px 16px; color: #fff; font-weight: 800; font-size: .8rem; margin-bottom: 18px;
+    }
+
+    /* ════ SMALL CARD CTA ════ */
+    .s-cta-sm {
+      background: rgba(255,255,255,.25); border-radius: 50px;
+      padding: 3px 11px; font-size: .7rem; font-weight: 900; margin-top: 4px;
+    }
+
+    /* ════ INGLÉS — BLOQUES (actualizado) ════ */
+    .eng-blocks-grid { display: flex; flex-direction: column; gap: 12px; }
+    .eng-block-card-wrap {
+      background: #fff; border-radius: 22px; padding: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,.07);
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .eng-block-info { display: flex; align-items: flex-start; gap: 10px; }
+    .eng-block-info .eb-icon { font-size: 2rem; flex-shrink: 0; margin-top: 2px; }
+    .eng-block-info-body { flex: 1; }
+    .eng-block-info .eb-title { font-size: .95rem; font-weight: 900; color: #3d0066; display: block; margin-bottom: 2px; }
+    .eng-block-info .eb-desc  { font-size: .75rem; color: #888; font-weight: 600; display: block; margin-bottom: 6px; }
+    .eng-block-info .eb-count { font-size: .68rem; font-weight: 900; padding: 2px 8px; border-radius: 50px; background: #f0e6ff; color: var(--purple); }
+    .eng-block-action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .eb-study-btn, .eb-practice-btn {
+      border: none; border-radius: 12px; padding: 10px;
+      font-family: 'Nunito', sans-serif; font-weight: 800;
+      font-size: .85rem; cursor: pointer;
+      transition: transform .1s, box-shadow .1s;
+    }
+    .eb-study-btn { background: #f0e6ff; color: var(--purple); box-shadow: 0 4px 0 #d9b3f0; }
+    .eb-study-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #d9b3f0; }
+    .eb-practice-btn { background: linear-gradient(135deg, var(--pink), var(--purple)); color: #fff; box-shadow: 0 4px 0 #5b2c6f; }
+    .eb-practice-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #5b2c6f; }
+
+    /* ════ PANTALLA DE ESTUDIO ════ */
+    .study-nav-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .study-block-banner {
+      border-radius: 20px; padding: 22px 20px; color: #fff;
+      text-align: center; margin-bottom: 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.15);
+    }
+    .study-block-banner .sb-icon  { font-size: 2.8rem; margin-bottom: 6px; }
+    .study-block-banner .sb-title { font-size: 1.3rem; font-weight: 900; margin-bottom: 3px; }
+    .study-block-banner .sb-desc  { font-size: .85rem; opacity: .88; font-weight: 600; }
+
+    .study-section {
+      background: #fff; border-radius: 20px; padding: 18px 16px;
+      margin-bottom: 10px; box-shadow: 0 4px 14px rgba(155,89,182,.08);
+    }
+    .study-section-title {
+      font-size: .72rem; font-weight: 900; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--purple); margin-bottom: 8px;
+    }
+    .study-section-body { font-size: .93rem; color: #444; line-height: 1.7; }
+    .study-section-body strong { color: #3d0066; }
+    .study-tip {
+      background: #fdf0ff; border-left: 4px solid var(--purple);
+      border-radius: 0 10px 10px 0; padding: 10px 13px;
+      font-size: .84rem; color: #555; line-height: 1.55; margin-top: 10px;
+    }
+
+    /* Flashcards */
+    .flashcards-section-title {
+      font-size: 1rem; font-weight: 900; color: #4a1a6a;
+      text-align: center; margin: 20px 0 12px;
+    }
+    .flashcard-wrap { perspective: 1000px; margin-bottom: 10px; cursor: pointer; }
+    .flashcard {
+      width: 100%; height: 150px; position: relative;
+      transform-style: preserve-3d; transition: transform .45s ease;
+    }
+    .flashcard.flipped { transform: rotateY(180deg); }
+    .flashcard-front, .flashcard-back {
+      position: absolute; width: 100%; height: 100%;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      border-radius: 20px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 20px; text-align: center;
+    }
+    .flashcard-front { background: linear-gradient(135deg, #7d3c98, #e91e8c); color: #fff; }
+    .flashcard-back  { background: #fff; transform: rotateY(180deg); border: 3px solid var(--purple); color: #3d0066; }
+    .fc-front-term  { font-size: 1.35rem; font-weight: 900; margin-bottom: 8px; }
+    .fc-front-hint  { font-size: .73rem; opacity: .78; }
+    .fc-back-answer { font-size: 1.25rem; font-weight: 900; color: var(--purple); margin-bottom: 5px; }
+    .fc-back-note   { font-size: .78rem; color: #888; }
+
+    .flashcard-nav {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; margin-bottom: 22px;
+    }
+    .fc-nav-btn {
+      background: rgba(155,89,182,.12); border: none; border-radius: 50px;
+      padding: 8px 18px; cursor: pointer; font-family: 'Nunito', sans-serif;
+      font-weight: 800; color: var(--purple); font-size: .88rem;
+    }
+    .fc-nav-btn:hover { background: rgba(155,89,182,.22); }
+    .fc-nav-btn:disabled { opacity: .3; cursor: default; }
+    .fc-counter { font-size: .85rem; color: #999; font-weight: 700; min-width: 55px; text-align: center; }
+
+    .study-cta {
+      width: 100%; border: none; border-radius: 16px; padding: 16px;
+      font-size: 1.05rem; font-weight: 800; font-family: 'Nunito', sans-serif;
+      cursor: pointer; color: #fff; margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      box-shadow: 0 6px 0 #5b2c6f; transition: transform .1s, box-shadow .1s;
+    }
+    .study-cta:active { transform: translateY(4px); box-shadow: 0 2px 0 #5b2c6f; }
   </style>
 </head>
 <body>
@@ -478,13 +718,87 @@
         <span class="s-desc">Chile y el mundo</span>
       </button>
 
-      <button id="card-eng" class="subj-card small" onclick="showComingSoon('eng')">
-        <span class="soon-badge">Próximamente</span>
+      <button id="card-eng" class="subj-card small" onclick="showScreen('eng-blocks-screen')">
         <span class="s-icon">🌎</span>
         <span class="s-name">Inglés</span>
         <span class="s-desc">Vocabulary &amp; grammar</span>
+        <span class="s-cta-sm">Practicar →</span>
       </button>
     </div>
+  </div>
+
+  <!-- ════════ PANTALLA: INGLÉS — BLOQUES ════════ -->
+  <div id="eng-blocks-screen" class="screen">
+    <h2 class="screen-title">🌎 Inglés</h2>
+    <p class="screen-sub">Unit 2: Free Time · Elige un bloque</p>
+    <div id="eng-blocks-grid" class="eng-blocks-grid"></div>
+  </div>
+
+  <!-- ════════ PANTALLA: INGLÉS — QUIZ ════════ -->
+  <div id="eng-quiz-screen" class="screen">
+    <div id="eng-progress-wrap">
+      <div id="eng-progress-label">
+        <button id="eng-quiz-back-btn" onclick="engConfirmBack()">← Bloques</button>
+        <span id="eng-prog-text">Pregunta 1 de 5</span>
+        <span id="eng-block-pill">Bloque</span>
+      </div>
+      <div id="eng-progress-track"><div id="eng-progress-fill" style="width:0%"></div></div>
+    </div>
+    <div id="eng-question-card">
+      <div id="eng-q-label">Inglés · Unit 2: Free Time</div>
+      <div id="eng-q-text"></div>
+    </div>
+    <div id="eng-options-wrap"></div>
+    <div id="eng-feedback"></div>
+    <button id="eng-next-btn" onclick="engNextQuestion()">Siguiente →</button>
+  </div>
+
+  <!-- ════════ PANTALLA: INGLÉS — RESULTADOS ════════ -->
+  <div id="eng-result-screen" class="screen">
+    <div id="eng-result-inner">
+      <h2 id="eng-res-title">¡Excelente, Millaray!</h2>
+      <p id="eng-res-tagline"></p>
+      <div id="eng-res-stars">⭐⭐⭐</div>
+      <p id="eng-res-score">Correctas: <span id="eng-res-correct">0</span> / <span id="eng-res-total">5</span></p>
+      <div id="eng-res-badge">Bloque</div>
+      <div class="result-actions">
+        <button class="action-btn btn-replay"  onclick="startEngBlock(engBlockIdx)">🔄 Repetir bloque</button>
+        <button class="action-btn" style="background:linear-gradient(135deg,#8e44ad,#2980b9);box-shadow:0 5px 0 #5b2c6f" onclick="showScreen('eng-blocks-screen')">📚 Otro bloque</button>
+        <button class="action-btn btn-home"    onclick="showScreen('home-screen')">🏠 Menú principal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ PANTALLA: INGLÉS — ESTUDIO ════════ -->
+  <div id="eng-study-screen" class="screen">
+    <div class="study-nav-row">
+      <button class="back-btn" onclick="showScreen('eng-blocks-screen')">← Bloques</button>
+    </div>
+    <div id="study-banner" class="study-block-banner">
+      <div id="study-banner-icon" class="sb-icon"></div>
+      <div id="study-banner-title" class="sb-title"></div>
+      <div id="study-banner-desc" class="sb-desc"></div>
+    </div>
+    <div id="study-sections-wrap"></div>
+    <div class="flashcards-section-title">✦ Tarjetas de vocabulario</div>
+    <div class="flashcard-wrap" onclick="flipCard()">
+      <div class="flashcard" id="flashcard">
+        <div class="flashcard-front">
+          <div id="fc-front-term" class="fc-front-term"></div>
+          <div class="fc-front-hint">Toca para ver la respuesta</div>
+        </div>
+        <div class="flashcard-back">
+          <div id="fc-back-answer" class="fc-back-answer"></div>
+          <div id="fc-back-note" class="fc-back-note"></div>
+        </div>
+      </div>
+    </div>
+    <div class="flashcard-nav">
+      <button class="fc-nav-btn" id="fc-prev" onclick="fcNav(-1)">← Anterior</button>
+      <span class="fc-counter" id="fc-counter">1 / 1</span>
+      <button class="fc-nav-btn" id="fc-next" onclick="fcNav(1)">Siguiente →</button>
+    </div>
+    <button class="study-cta" onclick="startEngBlock(engBlockIdx)">🎯 ¡A practicar este bloque!</button>
   </div>
 
   <!-- ════════ PANTALLA: PRÓXIMAMENTE ════════ -->
@@ -1054,9 +1368,640 @@ function spawnConfetti(count=55) {
 }
 
 // ════════════════════════════════════════
+//  INGLÉS — DATA
+// ════════════════════════════════════════
+const ENG_BLOCKS = [
+  {
+    icon: '🎯', title: 'do, go o play',
+    desc: '¿Qué verbo va con esta actividad?',
+    color: 'linear-gradient(135deg,#8e44ad,#2980b9)', shadow: '#5b2c6f',
+    study: {
+      sections: [
+        {
+          title: 'DO — actividades individuales',
+          body: 'Se usa con actividades de esfuerzo individual, artes marciales y rutinas.<br><br><strong>do yoga · do aerobics · do athletics · do martial arts · do gymnastics · do homework</strong>',
+          tip: 'Si no termina en -ing y no es deporte de equipo → prueba DO.'
+        },
+        {
+          title: 'GO — deportes con -ing',
+          body: 'Se usa con deportes y actividades físicas que terminan en <strong>-ing</strong>.<br><br><strong>go swimming · go skateboarding · go cycling · go skiing · go surfing · go running · go horse-riding · go roller-skating</strong>',
+          tip: '¿La actividad termina en -ing? → Casi siempre es GO.'
+        },
+        {
+          title: 'PLAY — deportes de equipo y juegos',
+          body: 'Se usa con deportes con pelota, competición con oponente o juegos con reglas.<br><br><strong>play football · play basketball · play chess · play tennis · play video games · play in a band</strong>',
+          tip: '¿Deporte de equipo o juego con reglas? → Es PLAY.'
+        },
+      ],
+      flashcards: [
+        { front: 'yoga',          back: 'do yoga',           note: 'actividad individual' },
+        { front: 'swimming',      back: 'go swimming',       note: 'termina en -ing' },
+        { front: 'chess',         back: 'play chess',        note: 'juego con reglas' },
+        { front: 'skateboarding', back: 'go skateboarding',  note: 'termina en -ing' },
+        { front: 'aerobics',      back: 'do aerobics',       note: 'ejercicio individual' },
+        { front: 'football',      back: 'play football',     note: 'deporte de equipo' },
+        { front: 'cycling',       back: 'go cycling',        note: 'termina en -ing' },
+        { front: 'martial arts',  back: 'do martial arts',   note: 'ejercicio individual' },
+        { front: 'basketball',    back: 'play basketball',   note: 'deporte de equipo' },
+        { front: 'running',       back: 'go running',        note: 'termina en -ing' },
+        { front: 'athletics',     back: 'do athletics',      note: 'ejercicio individual' },
+        { front: 'surfing',       back: 'go surfing',        note: 'termina en -ing' },
+      ]
+    },
+    questions: [
+      { text: '_____ yoga',                                        type: 'mc', opts: ['play','go','do','make'],    correct: 2 },
+      { text: '_____ swimming',                                    type: 'mc', opts: ['do','make','play','go'],    correct: 3 },
+      { text: '_____ chess',                                       type: 'mc', opts: ['do','play','go','make'],    correct: 1 },
+      { text: '_____ skateboarding',                               type: 'mc', opts: ['play','do','go','have'],    correct: 2 },
+      { text: '_____ aerobics',                                    type: 'mc', opts: ['go','play','do','make'],    correct: 2 },
+      { text: 'I often _____ cycling with my mum.',                type: 'mc', opts: ['play','do','go','make'],    correct: 2 },
+      { text: 'We hardly ever _____ basketball in PE.',            type: 'mc', opts: ['go','do','make','play'],    correct: 3 },
+      { text: "My dad doesn't _____ aerobics, he prefers yoga.",   type: 'mc', opts: ['go','play','do','make'],    correct: 2 },
+      { text: 'She loves to _____ chess with her grandfather.',    type: 'mc', opts: ['do','go','make','play'],    correct: 3 },
+      { text: 'On Saturdays they _____ swimming at the pool.',     type: 'mc', opts: ['play','do','make','go'],    correct: 3 },
+      { text: '_____ football',                                    type: 'mc', opts: ['do','go','play','make'],    correct: 2 },
+      { text: '_____ athletics',                                   type: 'mc', opts: ['play','go','do','make'],    correct: 2 },
+      { text: '_____ skiing',                                      type: 'mc', opts: ['play','do','go','make'],    correct: 2 },
+      { text: '_____ basketball',                                  type: 'mc', opts: ['do','go','play','make'],    correct: 2 },
+      { text: '_____ gymnastics',                                  type: 'mc', opts: ['go','play','make','do'],    correct: 3 },
+      { text: '_____ running',                                     type: 'mc', opts: ['play','do','go','make'],    correct: 2 },
+      { text: '_____ martial arts',                                type: 'mc', opts: ['go','play','make','do'],    correct: 3 },
+      { text: '_____ horse-riding',                                type: 'mc', opts: ['play','do','go','make'],    correct: 2 },
+      { text: '_____ video games',                                 type: 'mc', opts: ['do','go','play','make'],    correct: 2 },
+      { text: '_____ roller-skating',                              type: 'mc', opts: ['play','do','go','make'],    correct: 2 },
+      { text: '_____ surfing',                                     type: 'mc', opts: ['play','do','go','make'],    correct: 2 },
+      { text: '_____ in a band',                                   type: 'mc', opts: ['do','go','make','play'],    correct: 3 },
+      { text: 'Every morning I _____ athletics in the park.',      type: 'mc', opts: ['play','go','do','make'],    correct: 2 },
+      { text: 'They _____ surfing at the beach on weekends.',      type: 'mc', opts: ['play','do','go','make'],    correct: 2 },
+      { text: "Can you _____ chess? It's a great game!",          type: 'mc', opts: ['do','go','make','play'],    correct: 3 },
+      { text: 'I _____ martial arts twice a week.',               type: 'mc', opts: ['go','play','make','do'],    correct: 3 },
+      { text: 'My friends _____ roller-skating after school.',    type: 'mc', opts: ['play','do','go','make'],    correct: 2 },
+      { text: 'She likes to _____ gymnastics at the gym.',        type: 'mc', opts: ['go','play','do','make'],    correct: 2 },
+      { text: 'They _____ basketball in the school team.',        type: 'mc', opts: ['do','go','play','make'],    correct: 2 },
+      { text: 'I _____ horse-riding every Sunday morning.',       type: 'mc', opts: ['play','do','go','make'],    correct: 2 },
+    ]
+  },
+  {
+    icon: '📅', title: 'Adverbs of Frequency',
+    desc: 'Adverbios de frecuencia',
+    color: 'linear-gradient(135deg,#27ae60,#1abc9c)', shadow: '#1a7a40',
+    study: {
+      sections: [
+        {
+          title: 'De 0% a 100%',
+          body: '<strong>never</strong> (0%) · <strong>hardly ever</strong> (~10%) · <strong>sometimes</strong> (~40%) · <strong>often</strong> (~60%) · <strong>usually</strong> (~80%) · <strong>always</strong> (100%)',
+        },
+        {
+          title: 'Posición en la oración',
+          body: '• Con <strong>BE</strong>: sujeto + BE + adverbio<br>"She <strong>is always</strong> happy." ✓<br><br>• Con otros verbos: sujeto + adverbio + verbo<br>"They <strong>usually</strong> walk to school." ✓',
+          tip: '✗ Nunca entre sujeto y BE: "She always is late." → MAL.'
+        },
+      ],
+      flashcards: [
+        { front: 'always',      back: '100% — siempre',        note: "I'm always late." },
+        { front: 'usually',     back: '~80% — generalmente',   note: 'We usually go to bed at 10.' },
+        { front: 'often',       back: '~60% — frecuentemente', note: 'They often walk to school.' },
+        { front: 'sometimes',   back: '~40% — a veces',        note: 'She sometimes listens to music.' },
+        { front: 'hardly ever', back: '~10% — casi nunca',     note: 'I hardly ever eat onions.' },
+        { front: 'never',       back: '0% — nunca',            note: 'He never does sports.' },
+      ]
+    },
+    questions: [
+      { text: '¿Qué adverbio indica 0%?',                                        type: 'mc', opts: ['often','sometimes','never','usually'],           correct: 2 },
+      { text: '"She ___ late. Every single day."',                                type: 'mc', opts: ['sometimes is','is never','is always','hardly ever is'], correct: 2 },
+      { text: '"My parents ___ have lunch at home." (casi nunca)',                type: 'mc', opts: ['always','hardly ever','usually','often'],         correct: 1 },
+      { text: '¿Dónde va el adverbio con el verbo TO BE?',                       type: 'mc', opts: ['Antes del sujeto','Antes del BE','Después del BE','Al final'], correct: 2 },
+      { text: '"I _____ watch TV in the morning." (0%)',                          type: 'mc', opts: ['always','usually','sometimes','never'],            correct: 3 },
+      { text: '"My brother is _____ hungry when he gets home." (100%)',           type: 'mc', opts: ['sometimes','often','always','usually'],            correct: 2 },
+      { text: '¿Qué adverbio indica ~80%?',                                      type: 'mc', opts: ['always','usually','often','sometimes'],            correct: 1 },
+      { text: '¿Qué adverbio indica ~40%?',                                      type: 'mc', opts: ['never','hardly ever','sometimes','often'],         correct: 2 },
+      { text: '¿Qué adverbio indica ~10%?',                                      type: 'mc', opts: ['sometimes','often','hardly ever','never'],         correct: 2 },
+      { text: '¿Qué adverbio indica ~60%?',                                      type: 'mc', opts: ['always','usually','often','sometimes'],            correct: 2 },
+      { text: '"She _____ plays tennis on Fridays." (casi nunca)',                type: 'mc', opts: ['always','hardly ever','usually','often'],          correct: 1 },
+      { text: '"They _____ do homework after school." (~80%)',                    type: 'mc', opts: ['never','hardly ever','sometimes','usually'],       correct: 3 },
+      { text: '"We _____ meet friends on weekends." (~40%)',                      type: 'mc', opts: ['always','usually','sometimes','never'],            correct: 2 },
+      { text: '"He _____ eats breakfast at home." (~60%)',                        type: 'mc', opts: ['never','hardly ever','often','always'],            correct: 2 },
+      { text: '"She ___ happy." — Con "always" + BE, ¿cuál es correcta?',        type: 'mc', opts: ['always is','is always','always be','be always'],   correct: 1 },
+      { text: '¿Cuál adverbio expresa mayor frecuencia: sometimes o often?',     type: 'mc', opts: ['sometimes','often','son iguales','ninguno'],       correct: 1 },
+      { text: '¿Cuál es más frecuente: usually o always?',                       type: 'mc', opts: ['usually','always','son iguales','ninguno'],        correct: 1 },
+      { text: '¿Cuál es menos frecuente: never o hardly ever?',                  type: 'mc', opts: ['never','hardly ever','son iguales','ninguno'],     correct: 0 },
+      { text: '"usually" se traduce como...',                                     type: 'mc', opts: ['siempre','casi nunca','generalmente','a veces'],   correct: 2 },
+      { text: '"sometimes" se traduce como...',                                   type: 'mc', opts: ['nunca','a veces','siempre','frecuentemente'],      correct: 1 },
+      { text: '"hardly ever" se traduce como...',                                 type: 'mc', opts: ['siempre','frecuentemente','a veces','casi nunca'], correct: 3 },
+      { text: '"often" se traduce como...',                                       type: 'mc', opts: ['siempre','frecuentemente','a veces','nunca'],      correct: 1 },
+      { text: '"We _____ have PE on Mondays." (siempre, 100%)',                  type: 'mc', opts: ['never','sometimes','hardly ever','always'],        correct: 3 },
+      { text: '¿Cuál adverbio es más frecuente que "often" pero menos que "always"?', type: 'mc', opts: ['hardly ever','sometimes','usually','never'], correct: 2 },
+      { text: '¿Cuál oración tiene error?',                                      type: 'mc', opts: ['"She is never late."','"She usually walks."','"She always is late."','"He hardly ever eats meat."'], correct: 2 },
+      { text: '"I _____ go to bed at 10." (100%)',                               type: 'mc', opts: ['never','sometimes','hardly ever','always'],        correct: 3 },
+      { text: '"never" se traduce como...',                                       type: 'mc', opts: ['siempre','a veces','casi nunca','nunca'],          correct: 3 },
+      { text: '¿Qué adverbio usarías para "casi nunca como carne"?',             type: 'mc', opts: ['never','hardly ever','sometimes','usually'],       correct: 1 },
+      { text: '"always" se traduce como...',                                      type: 'mc', opts: ['siempre','a veces','casi nunca','frecuentemente'], correct: 0 },
+      { text: '"I _____ listen to music when I study." (~40%)',                   type: 'mc', opts: ['always','often','sometimes','never'],              correct: 2 },
+    ]
+  },
+  {
+    icon: '✅', title: 'Kitesurfing: V/F',
+    desc: 'True or False — comprensión lectora',
+    color: 'linear-gradient(135deg,#e67e22,#e74c3c)', shadow: '#a04000',
+    study: {
+      sections: [
+        {
+          title: 'Kitesurfing — ¿qué es?',
+          body: 'Deporte acuático con <strong>tabla pequeña</strong> (small board) y <strong>cometa grande</strong> (large kite). Es el <strong>viento</strong> (no el agua) el que mueve al kitesurfer. Se pueden hacer saltos, carreras o viajes largos.',
+        },
+        {
+          title: 'Adam Farrington — datos clave',
+          body: '• <strong>Edad:</strong> 14 años<br>• <strong>Logro:</strong> kitesurfer más joven en cruzar el Canal de la Mancha<br>• <strong>Distancia:</strong> 111 km<br>• <strong>Tiempo:</strong> 5 horas 19 minutos<br>• <strong>Dificultad:</strong> viento fuerte, olas grandes, barcos grandes',
+        },
+        {
+          title: 'Vocabulario clave',
+          body: '<strong>kite</strong> = cometa · <strong>board</strong> = tabla · <strong>wave</strong> = ola<br><strong>wind</strong> = viento · <strong>channel</strong> = canal · <strong>cross</strong> = cruzar',
+        },
+      ],
+      flashcards: [
+        { front: '¿Qué tabla usa el kitesurfer?', back: 'Tabla pequeña (small board)' },
+        { front: '¿Qué kite usa el kitesurfer?',  back: 'Cometa grande (large kite)' },
+        { front: '¿Qué mueve al kitesurfer?',     back: 'El viento (wind), no el agua' },
+        { front: '¿Cuántos años tiene Adam?',      back: '14 años' },
+        { front: '¿Cuántos km cruzó Adam?',        back: '111 km (Canal de la Mancha)' },
+        { front: '¿En cuánto tiempo?',             back: '5 horas 19 minutos' },
+        { front: 'kite',    back: 'cometa' },
+        { front: 'wave',    back: 'ola' },
+        { front: 'channel', back: 'canal' },
+        { front: 'cross',   back: 'cruzar' },
+      ]
+    },
+    questions: [
+      { text: 'Kitesurfing uses a big board and a small kite.',                         type: 'tf', correct: false, explanation: 'Uses a small board and a large kite.' },
+      { text: 'Adam Farrington crossed the English Channel in under 6 hours.',          type: 'tf', correct: true,  explanation: '¡Correcto! Lo cruzó en 5h 19min.' },
+      { text: '"Go" is used with yoga and aerobics.',                                   type: 'tf', correct: false, explanation: 'Se usa "do": do yoga, do aerobics.' },
+      { text: '"Never" means 0% of the time.',                                          type: 'tf', correct: true,  explanation: '¡Correcto! Never = 0%, always = 100%.' },
+      { text: '"I love swim" is grammatically correct.',                                type: 'tf', correct: false, explanation: 'Correcto: "I love swimming." (verb + -ing)' },
+      { text: '"But" is used to add a similar idea.',                                   type: 'tf', correct: false, explanation: '"But" contrasta ideas opuestas. "And" agrega ideas similares.' },
+      { text: 'Nick from the radio programme collects train tickets.',                  type: 'tf', correct: false, explanation: 'Nick collects photos of train stations, not tickets.' },
+      { text: 'The Model Railway Club in London is over 100 years old.',                type: 'tf', correct: true,  explanation: '¡Correcto! El club tiene más de 100 años.' },
+      { text: 'The wind (not the water) moves the kitesurfer.',                        type: 'tf', correct: true,  explanation: '¡Correcto! El viento es lo que mueve al kitesurfer.' },
+      { text: 'Adam Farrington wants to compete in the Olympics.',                      type: 'tf', correct: true,  explanation: '¡Correcto! Eso dice el artículo sobre sus metas futuras.' },
+      { text: 'Kitesurfers can only race; they cannot jump.',                           type: 'tf', correct: false, explanation: 'Pueden hacer saltos, competir en carreras Y viajar largas distancias.' },
+      { text: 'The English Channel separates England from Spain.',                      type: 'tf', correct: false, explanation: 'El Canal de la Mancha separa Inglaterra de Francia.' },
+      { text: 'Adam Farrington is the youngest kitesurfer to cross the English Channel.', type: 'tf', correct: true, explanation: '¡Correcto! Lo hizo a los 14 años.' },
+      { text: 'Adam Farrington crossed exactly 100 kilometres.',                        type: 'tf', correct: false, explanation: 'Cruzó 111 kilómetros.' },
+      { text: 'Jason from the radio programme collects photos of train stations.',      type: 'tf', correct: true,  explanation: '¡Correcto! Colecciona fotos de estaciones, no tickets.' },
+      { text: 'Chiara is from Italy.',                                                  type: 'tf', correct: true,  explanation: '¡Correcto! Chiara es de Pisa, Italia.' },
+      { text: 'Chiara goes skateboarding with her friends in the park.',                type: 'tf', correct: true,  explanation: '¡Correcto! Va al parque y hace skateboarding con amigos.' },
+      { text: 'The Unicon unicycling club meets every year.',                           type: 'tf', correct: false, explanation: 'El club Unicon se reúne cada dos años (every two years).' },
+      { text: 'Adam completed the channel crossing in exactly 6 hours.',                type: 'tf', correct: false, explanation: 'Lo completó en 5 horas 19 minutos, menos de 6 horas.' },
+      { text: 'Chiara plays in a football team after school.',                          type: 'tf', correct: false, explanation: 'Algunos amigos sí, pero Chiara prefiere el baloncesto.' },
+      { text: 'Nick writes stories for his friends and family.',                        type: 'tf', correct: true,  explanation: '¡Correcto! Nick escribe cuentos para sus amigos y familia.' },
+      { text: 'Chiara sometimes plays the guitar at home.',                             type: 'tf', correct: true,  explanation: '¡Correcto! A veces practica la guitarra en casa.' },
+      { text: '"play" is used with swimming and cycling.',                              type: 'tf', correct: false, explanation: 'Swimming y cycling usan "go": go swimming, go cycling.' },
+      { text: '"usually" means approximately 80% of the time.',                        type: 'tf', correct: true,  explanation: '¡Correcto! Usually ≈ 80%, always = 100%.' },
+      { text: '"and" is used to contrast two opposite ideas.',                          type: 'tf', correct: false, explanation: '"And" agrega ideas similares. "But" contrasta ideas opuestas.' },
+      { text: '"How often" means "¿Con qué frecuencia?"',                              type: 'tf', correct: true,  explanation: '¡Correcto! "How often do you swim?" = ¿Con qué frecuencia nadas?' },
+      { text: 'Chiara is from Pisa, Italy.',                                            type: 'tf', correct: true,  explanation: '¡Correcto! El mensaje de Chiara lo confirma.' },
+      { text: 'Adverbs of frequency always go before the subject.',                    type: 'tf', correct: false, explanation: 'Van antes del verbo principal o después del BE, nunca antes del sujeto.' },
+      { text: 'The Unicon club is a unicycling club.',                                  type: 'tf', correct: true,  explanation: '¡Correcto! Unicon es el club de monociclo de Mel.' },
+      { text: '"or" is used to give alternatives or choices.',                          type: 'tf', correct: true,  explanation: '¡Correcto! "Would you like tea or coffee?" → dos opciones.' },
+    ]
+  },
+  {
+    icon: '🔗', title: 'and / or / but',
+    desc: 'Elige el conector correcto',
+    color: 'linear-gradient(135deg,#f39c12,#e74c3c)', shadow: '#784212',
+    study: {
+      sections: [
+        {
+          title: 'AND — sumar ideas',
+          body: 'Une ideas <strong>similares</strong> o añade información.<br>"On Saturdays I meet my friends <strong>and</strong> we go surfing."<br>"I eat a sandwich <strong>and</strong> some fruit when I get home."',
+        },
+        {
+          title: 'OR — dar alternativas',
+          body: 'Presenta <strong>dos opciones</strong>.<br>"Would you like to have lunch <strong>or</strong> watch a TV series?"<br>"Do you play in a team <strong>or</strong> go alone?"',
+        },
+        {
+          title: 'BUT — contrastar ideas',
+          body: 'Contrasta ideas <strong>opuestas</strong>.<br>"I love playing sports, <strong>but</strong> I hate watching them on TV."<br>"I don\'t play in a band, <strong>but</strong> I go skateboarding."',
+          tip: 'AND = suma (+) · OR = alternativa (/) · BUT = contraste (≠)'
+        },
+      ],
+      flashcards: [
+        { front: 'I love football ___ I hate running.',               back: 'but', note: 'contraste' },
+        { front: 'On weekends I swim ___ play chess.',                back: 'and', note: 'suma ideas' },
+        { front: 'Would you like juice ___ water?',                   back: 'or',  note: 'alternativa' },
+        { front: 'She studies a lot ___ she fails the tests.',        back: 'but', note: 'contraste' },
+        { front: 'He plays guitar ___ sings in a band.',              back: 'and', note: 'suma ideas' },
+        { front: 'You can stay here ___ go home.',                    back: 'or',  note: 'alternativa' },
+        { front: 'I eat a sandwich ___ some fruit.',                  back: 'and', note: 'suma ideas' },
+        { front: "I don't play in a band, ___ I go skateboarding.",   back: 'but', note: 'contraste' },
+      ]
+    },
+    questions: [
+      { text: '"I love playing sports, ___ I hate watching them on TV."',              type: 'mc', opts: ['and','or','but','so'],                                         correct: 2 },
+      { text: '"On Saturdays I meet my friends ___ we go surfing."',                   type: 'mc', opts: ['but','or','so','and'],                                         correct: 3 },
+      { text: '"Would you like to have lunch ___ watch a TV series?"',                 type: 'mc', opts: ['and','but','so','or'],                                         correct: 3 },
+      { text: '"and" se usa para...',                                                  type: 'mc', opts: ['Contrastar ideas','Dar alternativas','Agregar ideas similares','Explicar razones'], correct: 2 },
+      { text: '"I love music, ___ I don\'t play any instrument."',                     type: 'mc', opts: ['and','or','so','but'],                                         correct: 3 },
+      { text: '"Do you go by bus ___ do you walk?"',                                   type: 'mc', opts: ['and','but','so','or'],                                         correct: 3 },
+      { text: '"I eat a sandwich ___ some fruit when I get home."',                    type: 'mc', opts: ['but','or','so','and'],                                         correct: 3 },
+      { text: '"I don\'t play in a band, ___ I go skateboarding."',                   type: 'mc', opts: ['and','or','so','but'],                                         correct: 3 },
+      { text: '"She loves music ___ she can\'t sing."',                               type: 'mc', opts: ['and','or','so','but'],                                         correct: 3 },
+      { text: '"Would you like tea ___ coffee?"',                                      type: 'mc', opts: ['and','but','so','or'],                                         correct: 3 },
+      { text: '"I play football ___ basketball — I love both!"',                       type: 'mc', opts: ['but','or','so','and'],                                         correct: 3 },
+      { text: '"I like cats, ___ my sister prefers dogs."',                            type: 'mc', opts: ['and','or','so','but'],                                         correct: 3 },
+      { text: '"You can read a book ___ watch a movie. Choose one!"',                  type: 'mc', opts: ['and','but','so','or'],                                         correct: 3 },
+      { text: '"She goes to the park ___ meets her friends there."',                   type: 'mc', opts: ['but','or','so','and'],                                         correct: 3 },
+      { text: '"I love swimming, ___ I hate running."',                                type: 'mc', opts: ['and','or','so','but'],                                         correct: 3 },
+      { text: '"Do you prefer chess ___ video games?"',                                type: 'mc', opts: ['and','but','so','or'],                                         correct: 3 },
+      { text: '"He studies hard ___ gets good marks."',                                type: 'mc', opts: ['but','or','so','and'],                                         correct: 3 },
+      { text: '"I like pizza, ___ I don\'t eat it every day."',                       type: 'mc', opts: ['and','or','so','but'],                                         correct: 3 },
+      { text: '"Would you like to stay home ___ go to the cinema?"',                   type: 'mc', opts: ['and','but','so','or'],                                         correct: 3 },
+      { text: '"I love reading, ___ I never have time."',                              type: 'mc', opts: ['and','or','so','but'],                                         correct: 3 },
+      { text: '"He plays in a band ___ writes songs."',                                type: 'mc', opts: ['but','or','so','and'],                                         correct: 3 },
+      { text: '"Do you walk to school ___ take the bus?"',                             type: 'mc', opts: ['and','but','so','or'],                                         correct: 3 },
+      { text: '"She likes sports, ___ she prefers music."',                            type: 'mc', opts: ['and','or','so','but'],                                         correct: 3 },
+      { text: '"I have a dog ___ a cat at home."',                                     type: 'mc', opts: ['but','or','so','and'],                                         correct: 3 },
+      { text: '"but" se usa para...',                                                  type: 'mc', opts: ['Agregar ideas','Dar alternativas','Contrastar ideas','Explicar razones'], correct: 2 },
+      { text: '"or" se usa para...',                                                   type: 'mc', opts: ['Contrastar ideas','Dar alternativas','Agregar ideas','Explicar razones'], correct: 1 },
+      { text: '"He trains every day ___ never misses a session."',                     type: 'mc', opts: ['but','or','so','and'],                                         correct: 3 },
+      { text: '"I love watching TV, ___ I hate adverts."',                             type: 'mc', opts: ['and','or','so','but'],                                         correct: 3 },
+      { text: '"She does yoga ___ goes running every morning."',                       type: 'mc', opts: ['but','or','so','and'],                                         correct: 3 },
+      { text: '"I don\'t have a bike, ___ I love cycling."',                          type: 'mc', opts: ['and','or','so','but'],                                         correct: 3 },
+    ]
+  },
+  {
+    icon: '❤️', title: 'Likes & Dislikes',
+    desc: 'love / like / hate + verb-ing',
+    color: 'linear-gradient(135deg,#e91e8c,#e74c3c)', shadow: '#9b0060',
+    study: {
+      sections: [
+        {
+          title: 'Estructura',
+          body: 'Después de love, like, don\'t mind, don\'t like y hate usamos <strong>verb + -ing</strong> o un sustantivo.<br><br>"I love <strong>swimming</strong>." &nbsp;·&nbsp; "She likes <strong>music</strong>."<br>"He doesn\'t mind <strong>painting</strong>." &nbsp;·&nbsp; "We hate <strong>video games</strong>."',
+          tip: 'Nunca infinitivo: ✗ "I love swim." → ✓ "I love swimming."'
+        },
+        {
+          title: 'Orden de intensidad',
+          body: '<strong>love</strong> ❤️ → <strong>like</strong> 😊 → <strong>don\'t mind</strong> 😐 → <strong>don\'t like</strong> 😕 → <strong>hate</strong> 😤<br><br>(de más positivo a más negativo)',
+        },
+      ],
+      flashcards: [
+        { front: 'love',         back: 'encanta / ama',           note: '"I love swimming."' },
+        { front: 'like',         back: 'gusta',                   note: '"She likes music."' },
+        { front: "don't mind",   back: 'no le importa / da igual',note: '"He doesn\'t mind painting."' },
+        { front: "don't like",   back: 'no gusta',                note: '"They don\'t like pasta."' },
+        { front: 'hate',         back: 'odia',                    note: '"We hate video games."' },
+        { front: '"I love swim" ✗', back: '"I love swimming" ✓',  note: 'siempre verb + -ing' },
+        { front: 'swim → ?',     back: 'swimming',                note: '+ing' },
+        { front: 'listen → ?',   back: 'listening',               note: '+ing' },
+        { front: 'watch → ?',    back: 'watching',                note: '+ing' },
+        { front: 'play → ?',     back: 'playing',                 note: '+ing' },
+      ]
+    },
+    questions: [
+      { text: '"I love ___." (forma correcta con verbo)',                        type: 'mc', opts: ['swim','to swim','swimming','swims'],                   correct: 2 },
+      { text: '¿Cuál expresa el mayor grado de gusto?',                         type: 'mc', opts: ['like','don\'t mind','love','enjoy'],                   correct: 2 },
+      { text: '"She doesn\'t mind ___." → ¿Qué significa?',                    type: 'mc', opts: ['Le encanta','Lo odia','Le da igual','No lo conoce'],   correct: 2 },
+      { text: '"They ___ playing video games." (odian)',                         type: 'mc', opts: ['love','like','don\'t mind','hate'],                    correct: 3 },
+      { text: '"She ___ (like) listening to music." — forma correcta',          type: 'mc', opts: ['like','likes','liking','liked'],                       correct: 1 },
+      { text: '"I love ___." ¿Qué opción es CORRECTA?',                         type: 'mc', opts: ['play guitar','to play guitar','playing guitar','plays guitar'], correct: 2 },
+      { text: '"He ___ doing homework." (odia, 3ª persona)',                     type: 'mc', opts: ['hate','hates','hating','hated'],                       correct: 1 },
+      { text: '"We don\'t like ___." (forma correcta con "watch")',             type: 'mc', opts: ['watch','to watch','watching','watches'],               correct: 2 },
+      { text: '"I hate ___." (forma correcta con "do")',                         type: 'mc', opts: ['do','to do','doing','does'],                           correct: 2 },
+      { text: '"She loves ___." (forma correcta con "listen")',                  type: 'mc', opts: ['listen','to listen','listening','listens'],             correct: 2 },
+      { text: '¿Cuál es MENOS positivo que "like" pero no negativo?',           type: 'mc', opts: ['love','like','don\'t mind','hate'],                    correct: 2 },
+      { text: '¿Qué usamos después de love/like/hate con un verbo?',            type: 'mc', opts: ['infinitivo (swim)','to + infinitivo','verb + -ing','verb + -ed'], correct: 2 },
+      { text: '"draw" → forma -ing',                                             type: 'mc', opts: ['drawwing','drawed','drawing','draws'],                  correct: 2 },
+      { text: '"make" → forma -ing',                                             type: 'mc', opts: ['makeing','making','maked','makes'],                    correct: 1 },
+      { text: '"swim" → forma -ing',                                             type: 'mc', opts: ['swiming','swimmed','swims','swimming'],                 correct: 3 },
+      { text: '"dance" → forma -ing',                                            type: 'mc', opts: ['danceing','danced','dancing','dances'],                 correct: 2 },
+      { text: '"They ___ playing chess." (les gusta, no encanta)',               type: 'mc', opts: ['love','like','hate','don\'t like'],                    correct: 1 },
+      { text: '"She ___ doing martial arts." (no le importa / da igual)',        type: 'mc', opts: ['loves','likes','doesn\'t mind','hates'],               correct: 2 },
+      { text: '"I ___ skateboarding!" (me encanta)',                             type: 'mc', opts: ['hate','don\'t like','don\'t mind','love'],              correct: 3 },
+      { text: '"He ___ watching TV." (no le gusta)',                             type: 'mc', opts: ['loves','likes','doesn\'t mind','doesn\'t like'],       correct: 3 },
+      { text: '¿Cuál significa "le da igual / no le importa"?',                 type: 'mc', opts: ['love','like','don\'t mind','hate'],                    correct: 2 },
+      { text: '"She likes ___." (forma correcta con "collect")',                 type: 'mc', opts: ['collect','to collect','collecting','collects'],         correct: 2 },
+      { text: '"They love ___." (forma correcta con "meet")',                    type: 'mc', opts: ['meet','to meet','meeting','meets'],                    correct: 2 },
+      { text: '¿Cuál expresa el mayor grado NEGATIVO?',                         type: 'mc', opts: ['don\'t like','don\'t mind','hate','like'],              correct: 2 },
+      { text: '"I ___ doing homework." (no me gusta)',                           type: 'mc', opts: ['love','like','don\'t mind','don\'t like'],              correct: 3 },
+      { text: '"He ___ going skateboarding on weekends." (le encanta, 3ª pers)', type: 'mc', opts: ['love','loves','loving','loved'],                       correct: 1 },
+      { text: '"run" → forma -ing',                                              type: 'mc', opts: ['runing','runned','running','runs'],                     correct: 2 },
+      { text: '"write" → forma -ing',                                            type: 'mc', opts: ['writeing','writing','writed','writes'],                 correct: 1 },
+      { text: '"My sister ___ listening to music. She does it every day."',     type: 'mc', opts: ['love','loves','don\'t like','hate'],                   correct: 1 },
+      { text: '"I ___ running. I prefer swimming." (no me gusta)',               type: 'mc', opts: ['love','like','don\'t mind','don\'t like'],              correct: 3 },
+    ]
+  },
+  {
+    icon: '❓', title: 'Wh- Questions',
+    desc: 'Who / What / When / Where / Why / How',
+    color: 'linear-gradient(135deg,#2980b9,#8e44ad)', shadow: '#1a5276',
+    study: {
+      sections: [
+        {
+          title: 'Question Words',
+          body: '<strong>Who</strong> = ¿Quién? &nbsp;·&nbsp; <strong>What</strong> = ¿Qué?<br><strong>When</strong> = ¿Cuándo? &nbsp;·&nbsp; <strong>Where</strong> = ¿Dónde?<br><strong>Why</strong> = ¿Por qué? &nbsp;·&nbsp; <strong>How</strong> = ¿Cómo?<br><strong>How many</strong> = ¿Cuántos? &nbsp;·&nbsp; <strong>How much</strong> = ¿Cuánto?<br><strong>How often</strong> = ¿Con qué frecuencia? &nbsp;·&nbsp; <strong>How old</strong> = ¿Qué edad?',
+        },
+        {
+          title: '3 estructuras',
+          body: '• Con <strong>BE</strong>: Q-word + BE + subject<br>"<strong>Why</strong> are you happy?"<br><br>• Con <strong>HAVE got</strong>: Q-word + have/has + subject + got<br>"<strong>How many</strong> brothers have you got?"<br><br>• Con <strong>DO/DOES</strong>: Q-word + do/does + subject + infinitive<br>"<strong>How often</strong> do they play tennis?"',
+          tip: 'Con DO/DOES, el verbo principal va en infinitivo (sin "s").'
+        },
+      ],
+      flashcards: [
+        { front: 'Who',       back: '¿Quién?',              note: '"Who is your favourite singer?"' },
+        { front: 'What',      back: '¿Qué?',                note: '"What is your hobby?"' },
+        { front: 'When',      back: '¿Cuándo?',             note: '"When does she do yoga?"' },
+        { front: 'Where',     back: '¿Dónde?',              note: '"Where do you go running?"' },
+        { front: 'Why',       back: '¿Por qué?',            note: '"Why do you like basketball?"' },
+        { front: 'How',       back: '¿Cómo?',               note: '"How do you go to school?"' },
+        { front: 'How many',  back: '¿Cuántos?',            note: '"How many brothers have you got?"' },
+        { front: 'How often', back: '¿Con qué frecuencia?', note: '"How often do they play tennis?"' },
+        { front: 'How old',   back: '¿Qué edad?',           note: '"How old is she?" → She\'s 13.' },
+      ]
+    },
+    questions: [
+      { text: '"_____ is your favourite superhero?" → "Spiderman."',             type: 'mc', opts: ['Where','When','Who','How'],          correct: 2 },
+      { text: '"_____ does she do yoga?" → "On Mondays and Wednesdays."',        type: 'mc', opts: ['Where','When','Who','Why'],          correct: 1 },
+      { text: '"_____ brothers have you got?" → "Two."',                         type: 'mc', opts: ['How many','How much','How often','Who'], correct: 0 },
+      { text: '"_____ do you like basketball?" → "Because it\'s fun."',         type: 'mc', opts: ['What','When','Where','Why'],         correct: 3 },
+      { text: '"_____ do you go running?" → "In the park."',                     type: 'mc', opts: ['When','Why','Where','Who'],          correct: 2 },
+      { text: '"_____ old is she?" → "She\'s 13."',                             type: 'mc', opts: ['What','How','Why','When'],           correct: 1 },
+      { text: '"_____ are you?" → "I\'m fine, thanks."',                        type: 'mc', opts: ['Who','Where','How','When'],          correct: 2 },
+      { text: '"_____ is Berlin?" → "It\'s in Germany."',                       type: 'mc', opts: ['Who','Where','Why','When'],          correct: 1 },
+      { text: '"_____ do the holidays start?" → "In July."',                     type: 'mc', opts: ['Where','Why','Who','When'],          correct: 3 },
+      { text: '"_____ time does the class start?" → "At 9 o\'clock."',          type: 'mc', opts: ['How','Why','What','When'],           correct: 2 },
+      { text: '"_____ do you go to school?" → "By bus."',                        type: 'mc', opts: ['Who','How','Why','Where'],           correct: 1 },
+      { text: '"_____ money has he got?" → "Ten euros."',                        type: 'mc', opts: ['How many','How much','How often','How old'], correct: 1 },
+      { text: '"_____ does she like basketball?" → "Because it\'s exciting."',  type: 'mc', opts: ['What','When','Where','Why'],         correct: 3 },
+      { text: '"_____ is your best friend?" → "María."',                         type: 'mc', opts: ['What','Where','Who','When'],         correct: 2 },
+      { text: '"_____ do you usually do on weekends?" → "I go cycling."',        type: 'mc', opts: ['When','Why','Who','What'],           correct: 3 },
+      { text: '"_____ often do you go swimming?" → "Twice a week."',             type: 'mc', opts: ['How','What','Who','Where'],          correct: 0 },
+      { text: '¿Qué question word usamos para preguntar por lugar?',             type: 'mc', opts: ['Who','When','Where','Why'],          correct: 2 },
+      { text: '¿Qué question word usamos para preguntar por persona?',           type: 'mc', opts: ['What','Where','Why','Who'],          correct: 3 },
+      { text: '¿Qué question word usamos para preguntar la razón?',              type: 'mc', opts: ['When','How','Where','Why'],          correct: 3 },
+      { text: '¿Qué question word usamos para preguntar la frecuencia?',         type: 'mc', opts: ['How many','How much','How often','How old'], correct: 2 },
+      { text: '"_____ is your teacher from?" → "She\'s from Chile."',           type: 'mc', opts: ['Who','What','Where','When'],         correct: 2 },
+      { text: '"_____ do you like doing in your free time?" → "Swimming."',     type: 'mc', opts: ['When','Why','Who','What'],           correct: 3 },
+      { text: '"_____ old is Adam Farrington?" → "He\'s 14."',                  type: 'mc', opts: ['What','How','Why','When'],           correct: 1 },
+      { text: 'Con verbo BE, la estructura es: Q-word + ___',                    type: 'mc', opts: ['do/does + subject','subject + BE','BE + subject','subject + verb'], correct: 2 },
+      { text: 'Con DO/DOES, el verbo principal va en...',                        type: 'mc', opts: ['pasado (-ed)','infinitivo (sin "s")','gerundio (-ing)','futuro (will)'], correct: 1 },
+      { text: '"_____ friends have you got?" → "About 20."',                    type: 'mc', opts: ['How much','How often','How many','How old'], correct: 2 },
+      { text: '"_____ often does Unicon meet?" → "Every two years."',           type: 'mc', opts: ['How','What','Where','Who'],          correct: 0 },
+      { text: '"_____ is kitesurfing popular?" → "Because it\'s exciting."',   type: 'mc', opts: ['What','When','Where','Why'],         correct: 3 },
+      { text: '"_____ is your favourite sport?" → "Swimming."',                  type: 'mc', opts: ['Who','Where','What','When'],         correct: 2 },
+      { text: '"_____ do you feel after exercise?" → "Great!"',                  type: 'mc', opts: ['Who','Where','Why','How'],           correct: 3 },
+    ]
+  },
+];
+
+// ════════════════════════════════════════
+//  INGLÉS — STATE
+// ════════════════════════════════════════
+let engBlockIdx = 0;
+let engBlock    = null;
+let engQIndex   = 0;
+let engCorrect  = 0;
+let engAnswered = false;
+
+// ════════════════════════════════════════
+//  INGLÉS — RENDER BLOCKS
+// ════════════════════════════════════════
+function renderEngBlocks() {
+  const grid = document.getElementById('eng-blocks-grid');
+  grid.innerHTML = '';
+  ENG_BLOCKS.forEach((block, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'eng-block-card-wrap';
+    wrap.innerHTML = `
+      <div class="eng-block-info">
+        <span class="eb-icon">${block.icon}</span>
+        <div class="eng-block-info-body">
+          <span class="eb-title">${block.title}</span>
+          <span class="eb-desc">${block.desc}</span>
+          <span class="eb-count">${block.questions.length} preguntas</span>
+        </div>
+      </div>
+      <div class="eng-block-action-row">
+        <button class="eb-study-btn"    onclick="startEngStudy(${i})">📖 Estudiar</button>
+        <button class="eb-practice-btn" onclick="startEngBlock(${i})">🎯 Practicar</button>
+      </div>`;
+    grid.appendChild(wrap);
+  });
+}
+
+// ════════════════════════════════════════
+//  INGLÉS — GAME FLOW
+// ════════════════════════════════════════
+function startEngBlock(idx) {
+  engBlockIdx = idx;
+  engBlock    = ENG_BLOCKS[idx];
+  engQIndex   = 0;
+  engCorrect  = 0;
+  engAnswered = false;
+  showScreen('eng-quiz-screen');
+  renderEngQuestion();
+}
+
+function engConfirmBack() {
+  if (confirm('¿Volver a los bloques de Inglés?')) showScreen('eng-blocks-screen');
+}
+
+function renderEngQuestion() {
+  engAnswered = false;
+  const q     = engBlock.questions[engQIndex];
+  const total = engBlock.questions.length;
+
+  // Progress
+  document.getElementById('eng-prog-text').textContent      = `Pregunta ${engQIndex + 1} de ${total}`;
+  document.getElementById('eng-progress-fill').style.width  = Math.round((engQIndex / total) * 100) + '%';
+  const pill = document.getElementById('eng-block-pill');
+  pill.textContent       = engBlock.title;
+  pill.style.background  = engBlock.shadow;
+
+  // Question
+  document.getElementById('eng-q-text').textContent = q.text;
+
+  // Reset feedback & next btn
+  const fb = document.getElementById('eng-feedback');
+  fb.className = ''; fb.textContent = '';
+  document.getElementById('eng-next-btn').style.display = 'none';
+
+  // Render options
+  const wrap = document.getElementById('eng-options-wrap');
+  wrap.innerHTML = '';
+
+  if (q.type === 'mc') {
+    const labels = ['A','B','C','D'];
+    q.opts.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'eng-opt-btn';
+      btn.innerHTML = `<span class="opt-label">${labels[i]}</span><span class="opt-text">${opt}</span>`;
+      btn.onclick   = () => submitEngAnswer(i);
+      wrap.appendChild(btn);
+    });
+  } else {
+    const tfWrap = document.createElement('div');
+    tfWrap.className = 'eng-tf-wrap';
+    ['✓ True', '✗ False'].forEach((label, i) => {
+      const btn = document.createElement('button');
+      btn.className = `eng-tf-btn ${i === 0 ? 'true-btn' : 'false-btn'}`;
+      btn.textContent = label;
+      btn.onclick     = () => submitEngAnswer(i === 0);
+      tfWrap.appendChild(btn);
+    });
+    wrap.appendChild(tfWrap);
+  }
+}
+
+function submitEngAnswer(selected) {
+  if (engAnswered) return;
+  engAnswered = true;
+
+  const q    = engBlock.questions[engQIndex];
+  const fb   = document.getElementById('eng-feedback');
+  const wrap = document.getElementById('eng-options-wrap');
+
+  wrap.querySelectorAll('button').forEach(b => b.disabled = true);
+
+  let isCorrect = false;
+
+  if (q.type === 'mc') {
+    isCorrect = selected === q.correct;
+    wrap.querySelectorAll('.eng-opt-btn').forEach((btn, i) => {
+      if (i === q.correct)                btn.classList.add('correct');
+      else if (i === selected && !isCorrect) btn.classList.add('wrong');
+    });
+    if (isCorrect) {
+      fb.textContent = pick(['✅ ¡Correcto! ¡Excelente!','🎉 ¡Muy bien!','⭐ ¡Lo lograste!','🌟 ¡Brillante, Millaray!']);
+      fb.className   = 'show ok';
+    } else {
+      fb.textContent = `❌ Era "${q.opts[q.correct]}". ¡Sigue intentando!`;
+      fb.className   = 'show fail';
+    }
+  } else {
+    isCorrect = selected === q.correct;
+    wrap.querySelectorAll('.eng-tf-btn').forEach(btn => {
+      const val = btn.classList.contains('true-btn');
+      if (val === q.correct)              btn.classList.add('correct');
+      else if (val === selected && !isCorrect) btn.classList.add('wrong');
+    });
+    if (isCorrect) {
+      fb.textContent = `✅ ¡Correcto! ${q.explanation}`;
+      fb.className   = 'show ok';
+    } else {
+      const ans = q.correct ? 'True ✓' : 'False ✗';
+      fb.textContent = `❌ Era ${ans}. ${q.explanation}`;
+      fb.className   = 'show fail';
+    }
+  }
+
+  if (isCorrect) {
+    engCorrect++;
+    totalPts += 10;
+    updateHdrScore();
+    if (engCorrect % 3 === 0) spawnConfetti();
+  }
+
+  document.getElementById('eng-next-btn').style.display = 'block';
+}
+
+function engNextQuestion() {
+  engQIndex++;
+  if (engQIndex >= engBlock.questions.length) showEngResults();
+  else renderEngQuestion();
+}
+
+function showEngResults() {
+  const total = engBlock.questions.length;
+  const pct   = engCorrect / total;
+  const tier  = pct < 0.5 ? 0 : pct < 0.8 ? 1 : 2;
+
+  const titles = ['¡Sigue practicando, Millaray!','¡Bien hecho, Millaray!','¡Excelente, Millaray!'];
+  const tags   = ['¡Cada intento te hace más fuerte! 💪','¡Vas muy bien, keep it up! 😊','¡Eres una crack del inglés! 🏆'];
+  const stars  = ['⭐','⭐⭐','⭐⭐⭐'];
+
+  document.getElementById('eng-res-title').textContent    = titles[tier];
+  document.getElementById('eng-res-tagline').textContent  = tags[tier];
+  document.getElementById('eng-res-stars').textContent    = stars[tier];
+  document.getElementById('eng-res-correct').textContent  = engCorrect;
+  document.getElementById('eng-res-total').textContent    = total;
+
+  const badge = document.getElementById('eng-res-badge');
+  badge.textContent      = engBlock.title;
+  badge.style.background = engBlock.shadow;
+
+  showScreen('eng-result-screen');
+  if (tier === 2) spawnConfetti(120);
+}
+
+// ════════════════════════════════════════
+//  INGLÉS — ESTUDIO
+// ════════════════════════════════════════
+let studyCardIndex = 0;
+let studyFlipped   = false;
+
+function startEngStudy(idx) {
+  engBlockIdx = idx;
+  engBlock    = ENG_BLOCKS[idx];
+  showScreen('eng-study-screen');
+  renderStudyScreen();
+}
+
+function renderStudyScreen() {
+  const block = ENG_BLOCKS[engBlockIdx];
+
+  // Banner
+  const banner = document.getElementById('study-banner');
+  banner.style.background = block.color;
+  document.getElementById('study-banner-icon').textContent  = block.icon;
+  document.getElementById('study-banner-title').textContent = block.title;
+  document.getElementById('study-banner-desc').textContent  = block.desc;
+
+  // Secciones de contenido
+  const wrap = document.getElementById('study-sections-wrap');
+  wrap.innerHTML = (block.study?.sections || []).map(s => `
+    <div class="study-section">
+      <div class="study-section-title">${s.title}</div>
+      <div class="study-section-body">${s.body}</div>
+      ${s.tip ? `<div class="study-tip">💡 ${s.tip}</div>` : ''}
+    </div>
+  `).join('');
+
+  // Flashcards
+  studyCardIndex = 0;
+  studyFlipped   = false;
+  renderFlashcard();
+}
+
+function renderFlashcard() {
+  const cards = ENG_BLOCKS[engBlockIdx].study?.flashcards || [];
+  if (!cards.length) return;
+  const card = cards[studyCardIndex];
+  document.getElementById('flashcard').classList.remove('flipped');
+  studyFlipped = false;
+  document.getElementById('fc-front-term').textContent  = card.front;
+  document.getElementById('fc-back-answer').textContent = card.back;
+  document.getElementById('fc-back-note').textContent   = card.note || '';
+  document.getElementById('fc-counter').textContent     = `${studyCardIndex + 1} / ${cards.length}`;
+  document.getElementById('fc-prev').disabled = studyCardIndex === 0;
+  document.getElementById('fc-next').disabled = studyCardIndex === cards.length - 1;
+}
+
+function flipCard() {
+  studyFlipped = !studyFlipped;
+  document.getElementById('flashcard').classList.toggle('flipped', studyFlipped);
+}
+
+function fcNav(dir) {
+  const cards = ENG_BLOCKS[engBlockIdx].study?.flashcards || [];
+  studyCardIndex = Math.max(0, Math.min(cards.length - 1, studyCardIndex + dir));
+  renderFlashcard();
+}
+
+// ════════════════════════════════════════
 //  INIT
 // ════════════════════════════════════════
 updateHdrScore();
+renderEngBlocks();
 </script>
 </body>
 </html>
