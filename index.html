@@ -654,6 +654,51 @@
       box-shadow: 0 6px 0 #5b2c6f; transition: transform .1s, box-shadow .1s;
     }
     .study-cta:active { transform: translateY(4px); box-shadow: 0 2px 0 #5b2c6f; }
+
+    /* ════ CIENCIAS — QUIZ ════ */
+    #sci-progress-wrap { margin-bottom: 14px; }
+    #sci-progress-label { font-size: .8rem; color: #999; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+    #sci-quiz-back-btn { background: rgba(39,174,96,.12); border: none; border-radius: 50px; padding: 4px 10px; cursor: pointer; font-family: 'Nunito', sans-serif; font-weight: 800; color: #27ae60; font-size: .76rem; white-space: nowrap; flex-shrink: 0; }
+    #sci-quiz-back-btn:hover { background: rgba(39,174,96,.22); }
+    #sci-prog-text { flex: 1; text-align: center; }
+    #sci-block-pill { border-radius: 50px; padding: 2px 9px; font-size: .7rem; font-weight: 900; color: #fff; flex-shrink: 0; }
+    #sci-progress-track { background: #d5f0e3; border-radius: 50px; height: 11px; overflow: hidden; }
+    #sci-progress-fill { height: 100%; background: linear-gradient(90deg, #27ae60, #f39c12); border-radius: 50px; transition: width .4s ease; }
+    #sci-question-card { background: #fff; border-radius: 26px; padding: clamp(20px,5vw,32px); box-shadow: 0 8px 28px rgba(39,174,96,.12); text-align: center; margin-bottom: 15px; }
+    #sci-q-label { font-size: .74rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #27ae60; margin-bottom: 10px; }
+    #sci-q-text { font-size: clamp(.95rem,3.8vw,1.3rem); font-weight: 900; color: #1a3a1a; line-height: 1.45; }
+    #sci-options-wrap { display: flex; flex-direction: column; gap: 9px; margin-bottom: 12px; }
+    .sci-opt-btn { width: 100%; border: 2px solid #c8f0d8; border-radius: 14px; padding: 12px 16px; background: #fff; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: clamp(.88rem,3.2vw,1rem); color: #1a3a1a; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 10px; transition: background .15s, border-color .15s; }
+    .sci-opt-btn:hover:not(:disabled) { background: #f0fff5; border-color: #27ae60; }
+    .sci-opt-btn.correct { background: #d4f8e8; border-color: var(--green); color: #1a6a3a; }
+    .sci-opt-btn.wrong   { background: #ffe0e0; border-color: var(--red); color: #900; }
+    .sci-opt-btn:disabled { cursor: default; }
+    .sci-opt-label { background: linear-gradient(135deg,#27ae60,#f39c12); color: #fff; border-radius: 8px; padding: 2px 8px; font-size: .75rem; font-weight: 900; flex-shrink: 0; min-width: 26px; text-align: center; }
+    .sci-opt-btn.correct .sci-opt-label { background: var(--green); }
+    .sci-opt-btn.wrong   .sci-opt-label { background: var(--red); }
+    .sci-tf-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .sci-tf-btn { border: none; border-radius: 16px; padding: 18px; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: clamp(1rem,4vw,1.2rem); cursor: pointer; transition: transform .1s, box-shadow .1s; }
+    .sci-true-btn  { background: linear-gradient(135deg,#27ae60,#1a7a40); color:#fff; box-shadow:0 5px 0 #0d5c2e; }
+    .sci-false-btn { background: linear-gradient(135deg,#e74c3c,#922b21); color:#fff; box-shadow:0 5px 0 #7b241c; }
+    .sci-tf-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 rgba(0,0,0,.3); }
+    .sci-tf-btn.correct { outline: 4px solid #27ae60; }
+    .sci-tf-btn.wrong   { opacity: .45; }
+    .sci-tf-btn:disabled { cursor: default; }
+    #sci-feedback { border-radius: 14px; padding: 12px 16px; font-weight: 800; font-size: clamp(.85rem,3.2vw,1rem); text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 6px; transition: opacity .3s; opacity: 0; margin-bottom: 12px; }
+    #sci-feedback.show { opacity: 1; }
+    #sci-feedback.ok   { background: #d4f8e8; color: #1a6a3a; }
+    #sci-feedback.fail { background: #ffe0e0; color: #900; }
+    #sci-next-btn { display: none; width: 100%; background: linear-gradient(135deg,var(--green),#1a7a40); color: #fff; border: none; border-radius: 16px; padding: 15px; font-size: clamp(.95rem,3.8vw,1.1rem); font-weight: 800; font-family: 'Nunito', sans-serif; cursor: pointer; box-shadow: 0 6px 0 #0f5028; transition: transform .1s, box-shadow .1s; }
+    #sci-next-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #0f5028; }
+
+    /* ════ CIENCIAS — RESULTADOS ════ */
+    #sci-result-inner { background: #fff; border-radius: 26px; padding: clamp(24px,5vw,40px) clamp(18px,4vw,32px); box-shadow: 0 8px 28px rgba(39,174,96,.12); text-align: center; }
+    #sci-res-title   { font-size: clamp(1.3rem,5.5vw,1.9rem); color: #27ae60; margin-bottom: 4px; }
+    #sci-res-tagline { color: #888; font-size: .9rem; margin-bottom: 18px; }
+    #sci-res-stars   { font-size: clamp(2.4rem,10vw,3.6rem); letter-spacing: 4px; margin-bottom: 8px; animation: pop .5s ease; }
+    #sci-res-score   { font-size: clamp(.9rem,3.5vw,1.15rem); font-weight: 700; color: #555; margin-bottom: 6px; }
+    #sci-res-correct { color: #27ae60; font-weight: 900; font-size: 1.2em; }
+    #sci-res-badge   { display: inline-block; border-radius: 50px; padding: 4px 16px; color: #fff; font-weight: 800; font-size: .8rem; margin-bottom: 18px; }
   </style>
 </head>
 <body>
@@ -704,11 +749,11 @@
         <span class="s-desc">Lectura y escritura</span>
       </button>
 
-      <button id="card-sci" class="subj-card small" onclick="showComingSoon('sci')">
-        <span class="soon-badge">Próximamente</span>
+      <button id="card-sci" class="subj-card small" onclick="showScreen('sci-blocks-screen')">
         <span class="s-icon">🔬</span>
         <span class="s-name">Ciencias</span>
-        <span class="s-desc">Naturaleza y experimentos</span>
+        <span class="s-desc">Sistema Digestivo</span>
+        <span class="s-cta-sm">Practicar →</span>
       </button>
 
       <button id="card-hist" class="subj-card small" onclick="showComingSoon('hist')">
@@ -799,6 +844,48 @@
       <button class="fc-nav-btn" id="fc-next" onclick="fcNav(1)">Siguiente →</button>
     </div>
     <button class="study-cta" onclick="startEngBlock(engBlockIdx)">🎯 ¡A practicar este bloque!</button>
+  </div>
+
+  <!-- ════════ PANTALLA: CIENCIAS — BLOQUES ════════ -->
+  <div id="sci-blocks-screen" class="screen">
+    <h2 class="screen-title">🔬 Ciencias</h2>
+    <p class="screen-sub">Sistema Digestivo · Elige un bloque</p>
+    <div id="sci-blocks-grid" class="eng-blocks-grid"></div>
+  </div>
+
+  <!-- ════════ PANTALLA: CIENCIAS — QUIZ ════════ -->
+  <div id="sci-quiz-screen" class="screen">
+    <div id="sci-progress-wrap">
+      <div id="sci-progress-label">
+        <button id="sci-quiz-back-btn" onclick="sciConfirmBack()">← Bloques</button>
+        <span id="sci-prog-text">Pregunta 1 de 10</span>
+        <span id="sci-block-pill">Bloque</span>
+      </div>
+      <div id="sci-progress-track"><div id="sci-progress-fill" style="width:0%"></div></div>
+    </div>
+    <div id="sci-question-card">
+      <div id="sci-q-label">Ciencias · Sistema Digestivo</div>
+      <div id="sci-q-text"></div>
+    </div>
+    <div id="sci-options-wrap"></div>
+    <div id="sci-feedback"></div>
+    <button id="sci-next-btn" onclick="sciNextQuestion()">Siguiente →</button>
+  </div>
+
+  <!-- ════════ PANTALLA: CIENCIAS — RESULTADOS ════════ -->
+  <div id="sci-result-screen" class="screen">
+    <div id="sci-result-inner">
+      <h2 id="sci-res-title">¡Excelente, Millaray!</h2>
+      <p id="sci-res-tagline"></p>
+      <div id="sci-res-stars">⭐⭐⭐</div>
+      <p id="sci-res-score">Correctas: <span id="sci-res-correct">0</span> / <span id="sci-res-total">10</span></p>
+      <div id="sci-res-badge">Bloque</div>
+      <div class="result-actions">
+        <button class="action-btn" style="background:linear-gradient(135deg,#27ae60,#1a7a40);box-shadow:0 5px 0 #0f5028" onclick="startSciBlock(sciBlockIdx)">🔄 Repetir bloque</button>
+        <button class="action-btn" style="background:linear-gradient(135deg,#27ae60,#f39c12);box-shadow:0 5px 0 #1a7a40" onclick="showScreen('sci-blocks-screen')">🔬 Otro bloque</button>
+        <button class="action-btn btn-home" onclick="showScreen('home-screen')">🏠 Menú principal</button>
+      </div>
+    </div>
   </div>
 
   <!-- ════════ PANTALLA: PRÓXIMAMENTE ════════ -->
@@ -1754,6 +1841,269 @@ const ENG_BLOCKS = [
 ];
 
 // ════════════════════════════════════════
+//  CIENCIAS — DATOS
+// ════════════════════════════════════════
+const SCI_BLOCKS = [
+  {
+    icon: '🫁', title: 'Los Órganos',
+    desc: 'Identifica los órganos del sistema digestivo',
+    color: 'linear-gradient(135deg,#27ae60,#1a7a40)', shadow: '#1a5c2e',
+    questions: [
+      { text: '¿Cuál es el primer órgano del sistema digestivo por donde pasa el alimento?', type: 'mc', opts: ['El esófago','La boca','El estómago','La faringe'], correct: 1 },
+      { text: '¿Cómo se llama el tubo que conecta la boca con el estómago?', type: 'mc', opts: ['Tráquea','Faringe','Esófago','Intestino'], correct: 2 },
+      { text: '¿Qué órgano produce la bilis?', type: 'mc', opts: ['El estómago','El páncreas','El hígado','La vesícula'], correct: 2 },
+      { text: '¿Dónde se almacena la bilis antes de pasar al intestino delgado?', type: 'mc', opts: ['En el hígado','En la vesícula biliar','En el páncreas','En el estómago'], correct: 1 },
+      { text: '¿Qué órgano absorbe la mayoría de los nutrientes?', type: 'mc', opts: ['El estómago','El intestino grueso','El intestino delgado','El hígado'], correct: 2 },
+      { text: '¿Qué órgano absorbe el agua y forma las heces?', type: 'mc', opts: ['Intestino delgado','Intestino grueso','Estómago','Páncreas'], correct: 1 },
+      { text: '¿Cuál de estos NO pertenece al sistema digestivo?', type: 'mc', opts: ['El esófago','El pulmón','El estómago','El hígado'], correct: 1 },
+      { text: 'El intestino delgado es más largo que el intestino grueso.', type: 'tf', correct: true, explanation: 'El intestino delgado mide ~6 m; el grueso solo ~1,5 m.' },
+      { text: '¿Qué glándula produce enzimas digestivas y también regula la glucosa en la sangre?', type: 'mc', opts: ['El hígado','La vesícula biliar','El páncreas','Las glándulas salivales'], correct: 2 },
+      { text: 'El recto es el último tramo del sistema digestivo, conectado al ano.', type: 'tf', correct: true, explanation: 'El recto almacena las heces antes de que sean eliminadas por el ano.' },
+    ]
+  },
+  {
+    icon: '🚀', title: 'El Viaje del Alimento',
+    desc: 'El recorrido paso a paso de lo que comemos',
+    color: 'linear-gradient(135deg,#1abc9c,#27ae60)', shadow: '#0e8c6e',
+    questions: [
+      { text: '¿Cómo se llama el proceso de triturar los alimentos con los dientes en la boca?', type: 'mc', opts: ['Deglución','Masticación','Digestión','Absorción'], correct: 1 },
+      { text: '¿Cómo se llama la masa suave que se forma al mezclar el alimento con la saliva?', type: 'mc', opts: ['Quimo','Bolo alimenticio','Quilo','Heces'], correct: 1 },
+      { text: '¿Qué movimiento muscular empuja el alimento por el esófago hacia el estómago?', type: 'mc', opts: ['Deglución','Masticación','Peristaltismo','Absorción'], correct: 2 },
+      { text: '¿Qué nombre recibe el alimento mezclado con jugo gástrico dentro del estómago?', type: 'mc', opts: ['Bolo alimenticio','Quimo','Bilis','Quilo'], correct: 1 },
+      { text: '¿Por dónde salen los residuos no digeridos del cuerpo?', type: 'mc', opts: ['El esófago','La boca','El ano','La vejiga'], correct: 2 },
+      { text: 'El alimento pasa del estómago directamente al intestino grueso.', type: 'tf', correct: false, explanation: 'Primero pasa al intestino DELGADO, y luego al intestino grueso.' },
+      { text: '¿En qué órgano se produce la mayor parte de la digestión y la absorción de nutrientes?', type: 'mc', opts: ['En la boca','En el esófago','En el intestino delgado','En el intestino grueso'], correct: 2 },
+      { text: 'El orden correcto es: boca → esófago → intestino delgado → estómago.', type: 'tf', correct: false, explanation: 'El orden correcto es: boca → esófago → estómago → intestino delgado.' },
+      { text: '¿Cómo se llama el acto de pasar el bolo alimenticio de la boca al esófago?', type: 'mc', opts: ['Masticación','Absorción','Deglución','Peristaltismo'], correct: 2 },
+      { text: '¿Cuánto tiempo puede tardar la digestión completa de un alimento en el cuerpo?', type: 'mc', opts: ['1-2 horas','6-8 horas','24-72 horas','5 minutos'], correct: 2 },
+    ]
+  },
+  {
+    icon: '⚙️', title: 'Funciones de los Órganos',
+    desc: '¿Para qué sirve cada parte del sistema digestivo?',
+    color: 'linear-gradient(135deg,#f39c12,#e67e22)', shadow: '#a04000',
+    questions: [
+      { text: '¿Cuál es la función principal del estómago?', type: 'mc', opts: ['Absorber nutrientes','Mezclar el alimento con jugos gástricos','Producir bilis','Eliminar residuos'], correct: 1 },
+      { text: '¿Qué hace la saliva en la boca además de humedecer el alimento?', type: 'mc', opts: ['Solo humedece el alimento','Inicia la digestión del almidón','Absorbe nutrientes','Produce bilis'], correct: 1 },
+      { text: '¿Para qué sirve la bilis producida por el hígado?', type: 'mc', opts: ['Digerir las proteínas','Digerir las grasas (lípidos)','Absorber vitaminas','Mover el alimento'], correct: 1 },
+      { text: '¿Cuál es la función principal del intestino delgado?', type: 'mc', opts: ['Eliminar las heces','Absorber los nutrientes hacia la sangre','Producir jugos gástricos','Almacenar bilis'], correct: 1 },
+      { text: '¿Qué función tiene el intestino grueso?', type: 'mc', opts: ['Absorber proteínas','Absorber agua y formar las heces','Producir enzimas','Digerir grasas'], correct: 1 },
+      { text: 'Las muelas son los dientes que se usan para triturar el alimento.', type: 'tf', correct: true, explanation: 'Las muelas son los dientes más anchos y se usan para triturar y moler los alimentos.' },
+      { text: '¿Qué produce el páncreas para ayudar en la digestión?', type: 'mc', opts: ['Bilis','Saliva','Enzimas digestivas','Jugos gástricos'], correct: 2 },
+      { text: '¿Qué hace el hígado con las sustancias dañinas de la sangre?', type: 'mc', opts: ['Las elimina por el intestino','Las filtra y desintoxica la sangre','Las almacena en el estómago','Las convierte en bilis'], correct: 1 },
+      { text: 'El esófago digiere los alimentos mientras los transporta al estómago.', type: 'tf', correct: false, explanation: 'El esófago SOLO transporta el alimento, no lo digiere.' },
+      { text: '¿Cuál es la función de los dientes incisivos (los frontales)?', type: 'mc', opts: ['Triturar el alimento','Cortar y morder el alimento','Producir saliva','Mover el alimento'], correct: 1 },
+    ]
+  },
+  {
+    icon: '🧪', title: 'Digestión Química y Mecánica',
+    desc: 'Enzimas, bilis y jugos digestivos',
+    color: 'linear-gradient(135deg,#8e44ad,#27ae60)', shadow: '#5b2c6f',
+    questions: [
+      { text: '¿Qué tipo de digestión ocurre cuando masticamos el alimento con los dientes?', type: 'mc', opts: ['Química','Mecánica','Química y mecánica','Absortiva'], correct: 1 },
+      { text: '¿Qué tipo de digestión ocurre cuando la saliva actúa y transforma el almidón?', type: 'mc', opts: ['Mecánica','Química','Física','Absortiva'], correct: 1 },
+      { text: '¿Qué sustancia del estómago ayuda a descomponer los alimentos y matar bacterias?', type: 'mc', opts: ['Bilis','Jugo gástrico (ácido clorhídrico)','Saliva','Jugo pancreático'], correct: 1 },
+      { text: '¿Qué nombre reciben las proteínas especiales que aceleran la digestión química?', type: 'mc', opts: ['Vitaminas','Minerales','Enzimas','Bilis'], correct: 2 },
+      { text: 'La bilis es producida directamente por el páncreas.', type: 'tf', correct: false, explanation: 'La bilis es producida por el HÍGADO y almacenada en la vesícula biliar.' },
+      { text: '¿Qué tipo de nutrientes ayuda a digerir principalmente la bilis?', type: 'mc', opts: ['Proteínas','Carbohidratos','Grasas (lípidos)','Vitaminas'], correct: 2 },
+      { text: '¿En qué parte del sistema digestivo se inicia la digestión química del almidón?', type: 'mc', opts: ['En el estómago','En el intestino delgado','En la boca','En el intestino grueso'], correct: 2 },
+      { text: 'El ambiente ácido del estómago ayuda a eliminar microorganismos dañinos.', type: 'tf', correct: true, explanation: 'El ácido clorhídrico del estómago destruye muchas bacterias y gérmenes.' },
+      { text: '¿Qué órgano produce enzimas que digieren proteínas, grasas y carbohidratos?', type: 'mc', opts: ['El hígado','La vesícula biliar','El páncreas','El estómago'], correct: 2 },
+      { text: '¿Cuál de estos es un ejemplo de digestión MECÁNICA?', type: 'mc', opts: ['La saliva descompone el almidón','El estómago produce ácido','Los dientes trituran el alimento','Las enzimas actúan sobre las proteínas'], correct: 2 },
+    ]
+  },
+  {
+    icon: '💚', title: 'Absorción y Salud Digestiva',
+    desc: 'Nutrientes, absorción y buenos hábitos',
+    color: 'linear-gradient(135deg,#27ae60,#f39c12)', shadow: '#1a7a40',
+    questions: [
+      { text: '¿Cómo se llaman las pequeñas estructuras del intestino delgado que aumentan la superficie de absorción?', type: 'mc', opts: ['Vellosidades intestinales','Cilios','Papilas','Alvéolos'], correct: 0 },
+      { text: '¿A dónde pasan los nutrientes absorbidos en el intestino delgado?', type: 'mc', opts: ['Al intestino grueso','Al hígado','A la sangre','Al estómago'], correct: 2 },
+      { text: '¿Qué nutriente es la principal fuente de energía rápida para el cuerpo?', type: 'mc', opts: ['Las grasas','Las proteínas','Los carbohidratos (azúcares)','Las vitaminas'], correct: 2 },
+      { text: '¿Para qué sirven principalmente las proteínas en el cuerpo?', type: 'mc', opts: ['Solo dan energía','Construyen y reparan tejidos del cuerpo','Solo se almacenan como grasa','Solo protegen órganos'], correct: 1 },
+      { text: 'Tomar suficiente agua durante el día ayuda a la digestión.', type: 'tf', correct: true, explanation: 'El agua facilita el movimiento de los alimentos y la absorción de nutrientes.' },
+      { text: '¿Cómo se llama el problema digestivo en que las heces son duras y difíciles de expulsar?', type: 'mc', opts: ['Diarrea','Estreñimiento','Acidez','Náuseas'], correct: 1 },
+      { text: 'Las fibras vegetales (frutas, verduras, legumbres) ayudan al tránsito intestinal.', type: 'tf', correct: true, explanation: 'La fibra facilita el movimiento de los alimentos y previene el estreñimiento.' },
+      { text: '¿Qué hábito NO es saludable para el sistema digestivo?', type: 'mc', opts: ['Comer frutas y verduras','Tomar mucha agua','Comer muy rápido sin masticar bien','Hacer ejercicio regularmente'], correct: 2 },
+      { text: '¿Qué vitaminas necesitan la presencia de grasas para ser absorbidas correctamente?', type: 'mc', opts: ['Vitaminas C y B','Vitaminas A, D, E y K','Solo la vitamina C','Ninguna vitamina necesita grasas'], correct: 1 },
+      { text: 'Lavarse las manos antes de comer ayuda a prevenir enfermedades digestivas.', type: 'tf', correct: true, explanation: 'Los gérmenes en las manos pueden entrar al sistema digestivo y causar infecciones.' },
+    ]
+  },
+];
+
+// ════════════════════════════════════════
+//  CIENCIAS — STATE
+// ════════════════════════════════════════
+let sciBlockIdx = 0;
+let sciBlock    = null;
+let sciQIndex   = 0;
+let sciCorrect  = 0;
+let sciAnswered = false;
+
+// ════════════════════════════════════════
+//  CIENCIAS — RENDER BLOCKS
+// ════════════════════════════════════════
+function renderSciBlocks() {
+  const grid = document.getElementById('sci-blocks-grid');
+  grid.innerHTML = '';
+  SCI_BLOCKS.forEach((block, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'eng-block-card-wrap';
+    wrap.innerHTML = `
+      <div class="eng-block-info">
+        <span class="eb-icon">${block.icon}</span>
+        <div class="eng-block-info-body">
+          <span class="eb-title">${block.title}</span>
+          <span class="eb-desc">${block.desc}</span>
+          <span class="eb-count">${block.questions.length} preguntas</span>
+        </div>
+      </div>
+      <div class="eng-block-action-row">
+        <button class="eb-practice-btn" style="grid-column:span 2" onclick="startSciBlock(${i})">🎯 Practicar</button>
+      </div>`;
+    grid.appendChild(wrap);
+  });
+}
+
+// ════════════════════════════════════════
+//  CIENCIAS — GAME FLOW
+// ════════════════════════════════════════
+function startSciBlock(idx) {
+  sciBlockIdx = idx;
+  sciBlock    = SCI_BLOCKS[idx];
+  sciQIndex   = 0;
+  sciCorrect  = 0;
+  sciAnswered = false;
+  showScreen('sci-quiz-screen');
+  renderSciQuestion();
+}
+
+function sciConfirmBack() {
+  if (confirm('¿Volver a los bloques de Ciencias?')) showScreen('sci-blocks-screen');
+}
+
+function renderSciQuestion() {
+  sciAnswered = false;
+  const q     = sciBlock.questions[sciQIndex];
+  const total = sciBlock.questions.length;
+
+  document.getElementById('sci-prog-text').textContent     = `Pregunta ${sciQIndex + 1} de ${total}`;
+  document.getElementById('sci-progress-fill').style.width = Math.round((sciQIndex / total) * 100) + '%';
+  const pill = document.getElementById('sci-block-pill');
+  pill.textContent      = sciBlock.title;
+  pill.style.background = sciBlock.shadow;
+
+  document.getElementById('sci-q-text').textContent = q.text;
+
+  const fb = document.getElementById('sci-feedback');
+  fb.className = ''; fb.textContent = '';
+  document.getElementById('sci-next-btn').style.display = 'none';
+
+  const wrap = document.getElementById('sci-options-wrap');
+  wrap.innerHTML = '';
+
+  if (q.type === 'mc') {
+    const labels = ['A','B','C','D'];
+    q.opts.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'sci-opt-btn';
+      btn.innerHTML = `<span class="sci-opt-label">${labels[i]}</span><span>${opt}</span>`;
+      btn.onclick   = () => submitSciAnswer(i);
+      wrap.appendChild(btn);
+    });
+  } else {
+    const tfWrap = document.createElement('div');
+    tfWrap.className = 'sci-tf-wrap';
+    [['✓ Verdadero','sci-true-btn'], ['✗ Falso','sci-false-btn']].forEach(([label, cls], i) => {
+      const btn = document.createElement('button');
+      btn.className = `sci-tf-btn ${cls}`;
+      btn.textContent = label;
+      btn.onclick     = () => submitSciAnswer(i === 0);
+      tfWrap.appendChild(btn);
+    });
+    wrap.appendChild(tfWrap);
+  }
+}
+
+function submitSciAnswer(selected) {
+  if (sciAnswered) return;
+  sciAnswered = true;
+
+  const q    = sciBlock.questions[sciQIndex];
+  const fb   = document.getElementById('sci-feedback');
+  const wrap = document.getElementById('sci-options-wrap');
+
+  wrap.querySelectorAll('button').forEach(b => b.disabled = true);
+
+  let isCorrect = false;
+
+  if (q.type === 'mc') {
+    isCorrect = selected === q.correct;
+    wrap.querySelectorAll('.sci-opt-btn').forEach((btn, i) => {
+      if (i === q.correct)                   btn.classList.add('correct');
+      else if (i === selected && !isCorrect) btn.classList.add('wrong');
+    });
+    fb.textContent = isCorrect
+      ? pick(['✅ ¡Correcto!','🎉 ¡Muy bien, Millaray!','⭐ ¡Excelente!','🌟 ¡Brillante!'])
+      : `❌ Era "${q.opts[q.correct]}". ¡Sigue intentando!`;
+    fb.className   = 'show ' + (isCorrect ? 'ok' : 'fail');
+  } else {
+    isCorrect = selected === q.correct;
+    wrap.querySelectorAll('.sci-tf-btn').forEach(btn => {
+      const val = btn.classList.contains('sci-true-btn');
+      if (val === q.correct)                 btn.classList.add('correct');
+      else if (val === selected && !isCorrect) btn.classList.add('wrong');
+    });
+    if (isCorrect) {
+      fb.textContent = `✅ ¡Correcto! ${q.explanation}`;
+      fb.className   = 'show ok';
+    } else {
+      const ans = q.correct ? 'Verdadero ✓' : 'Falso ✗';
+      fb.textContent = `❌ Era ${ans}. ${q.explanation}`;
+      fb.className   = 'show fail';
+    }
+  }
+
+  if (isCorrect) {
+    sciCorrect++;
+    totalPts += 10;
+    updateHdrScore();
+    if (sciCorrect % 3 === 0) spawnConfetti();
+  }
+
+  document.getElementById('sci-next-btn').style.display = 'block';
+}
+
+function sciNextQuestion() {
+  sciQIndex++;
+  if (sciQIndex >= sciBlock.questions.length) showSciResults();
+  else renderSciQuestion();
+}
+
+function showSciResults() {
+  const total = sciBlock.questions.length;
+  const pct   = sciCorrect / total;
+  const tier  = pct < 0.5 ? 0 : pct < 0.8 ? 1 : 2;
+
+  const titles = ['¡Sigue practicando, Millaray!','¡Bien hecho, Millaray!','¡Excelente, Millaray!'];
+  const tags   = ['¡Cada intento te hace más fuerte! 💪','¡Vas muy bien, casi lo tienes! 😊','¡Eres una crack de las Ciencias! 🏆'];
+  const stars  = ['⭐','⭐⭐','⭐⭐⭐'];
+
+  document.getElementById('sci-res-title').textContent   = titles[tier];
+  document.getElementById('sci-res-tagline').textContent = tags[tier];
+  document.getElementById('sci-res-stars').textContent   = stars[tier];
+  document.getElementById('sci-res-correct').textContent = sciCorrect;
+  document.getElementById('sci-res-total').textContent   = total;
+
+  const badge = document.getElementById('sci-res-badge');
+  badge.textContent      = sciBlock.title;
+  badge.style.background = sciBlock.shadow;
+
+  showScreen('sci-result-screen');
+  if (tier === 2) spawnConfetti(120);
+}
+
+// ════════════════════════════════════════
 //  INGLÉS — STATE
 // ════════════════════════════════════════
 let engBlockIdx = 0;
@@ -2002,6 +2352,7 @@ function fcNav(dir) {
 // ════════════════════════════════════════
 updateHdrScore();
 renderEngBlocks();
+renderSciBlocks();
 </script>
 </body>
 </html>
